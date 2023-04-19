@@ -53,6 +53,10 @@ export default class Package extends Command {
     this.log(`Given directory: ${chalk.red(dir)}`);
     this.log(`Production dependencies: ${chalk.red(onlyProd)}`);
 
+    if (packageManager === PackageManager.yarn) {
+      throw new Error('Not yet implemented');
+    }
+
     // Generating command
     const command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : ''].join(' ').trim();
     this.log(`Generated command: ${chalk.green(command)}`);

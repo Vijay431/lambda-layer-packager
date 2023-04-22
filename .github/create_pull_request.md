@@ -6,9 +6,7 @@
 
 - [ ] Updating PR Title with Jira issue number?
 - [ ] Updating PR Description?
-
-  Is this is a,
-
+- Is this is a,
   - [ ] `hotfix`       - Production fix
   - [ ] `feature`      - Newly requested feature
   - [ ] `release`      - Beta release

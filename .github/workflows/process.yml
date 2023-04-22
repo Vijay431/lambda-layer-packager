@@ -30,6 +30,6 @@ jobs:
           destination_branch: "master"
           pr_title: "Merging changes to `master` branch"
           pr_template: ".github/create_pull_request.md"
-          pr_assignee: "Vijay431"
+          pr_assignee: "vijay431"
           pr_draft: false
           pr_allow_empty: false

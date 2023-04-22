@@ -2,6 +2,7 @@ name: Create Pull Request
 run-name: Pull Request
 
 permissions:
+  contents: read
   pull-requests: write
 
 on:

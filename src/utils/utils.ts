@@ -9,7 +9,7 @@ export function getCommandByPackageManager(packageManager: PackageManager): stri
   if (packageManager === PackageManager.pnpm) {
     return 'pnpm ls --json';
   } else if (packageManager === PackageManager.yarn) {
-    return 'yarn list --json';
+    return 'yarn list';
   } else {
     return 'npm ls --json';
   }
@@ -21,8 +21,10 @@ export function getCommandByPackageManager(packageManager: PackageManager): stri
  * @argument {PackageManager} [packageManager]
  */
 export function getOnlyProdCommand(packageManager: PackageManager) {
-  if ([PackageManager.pnpm, PackageManager.yarn].includes(packageManager)) {
+  if (packageManager === PackageManager.pnpm) {
     return '--prod';
+  } else if (packageManager === PackageManager.yarn) {
+    return '--production';
   } else {
     return '--omit=dev';
   }

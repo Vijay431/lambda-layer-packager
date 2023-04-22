@@ -1,0 +1,25 @@
+version: 2
+
+updates:
+  - directory: /
+    open-pull-requests-limit: 10
+    package-ecosystem: npm
+    rebase-strategy: auto
+    schedule:
+      interval: daily
+      time: "21:00"
+      timezone: "Asia/Kolkata"
+    pull-request-branch-name:
+      separator: "_"
+    assignees:
+      - "Vijay431"
+    commit-message:
+      include: scope
+      prefix: Vulnerability
+    target-branch: dev
+    labels:
+      - "fix"
+      - vulnerability
+    versioning-strategy: increase-if-necessary
+
+enable-beta-ecosystems: true

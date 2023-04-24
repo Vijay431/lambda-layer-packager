@@ -1,12 +1,11 @@
 #!/bin/bash env
 
-readonly branch=$1
-readonly source_branch=${branch:11};
-dest_branch="master";
+readonly source_branch=$1
+dest_branch="master"
 if [[ $source_branch == "dev" || $source_branch == *"support"* || $source_branch == *"hotfix"* ]]; then
-    dest_branch="master"
+  dest_branch="master"
 else
-    dest_branch="release"
+  dest_branch="release"
 fi
 echo $dest_branch
 

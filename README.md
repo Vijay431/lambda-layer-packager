@@ -24,7 +24,7 @@ $ npm install -g lambda-layer-packager
 $ packager COMMAND
 running command...
 $ packager (--version)
-lambda-layer-packager/0.0.0 win32-x64 node-v18.12.1
+lambda-layer-packager/0.0.4 win32-x64 node-v18.12.1
 $ packager --help [COMMAND]
 USAGE
   $ packager COMMAND
@@ -59,10 +59,10 @@ DESCRIPTION
 
 EXAMPLES
   $ packager package --help
-    To get to know about the package command
+    To get to know about the package commands that are available
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/hello/index.ts)_
 
 ## `packager help [COMMANDS]`
 
@@ -86,7 +86,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.9
 
 ## `packager package`
 
-Pack the node modules into a zipped file, to get easily deployed
+Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease
 
 ```
 USAGE
@@ -98,14 +98,14 @@ FLAGS
   package-manager=<value>  [default: npm] Which package manager being used in this project?
 
 DESCRIPTION
-  Pack the node modules into a zipped file, to get easily deployed
+  Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease
 
 EXAMPLES
   $ packager package
-    packages node modules with all default options
+    packages node_modules with all default options
 ```
 
-_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/package/index.ts)_
+_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/package/index.ts)_
 
 ## `packager plugins`
 

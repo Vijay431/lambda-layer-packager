@@ -1,6 +1,6 @@
 {
   "name": "lambda-layer-packager",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "description": "It will help you to package the node_modules required for the lambda to run in an efficient way",
   "author": "Vijay Gangatharan",
   "icon": "./assets/icon.png",

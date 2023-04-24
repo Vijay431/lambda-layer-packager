@@ -11,11 +11,11 @@ import { getCommandByPackageManager, getOnlyProdCommand } from '../../utils';
 export default class Package extends Command {
   private zipFileName = 'layer.zip';
 
-  static description = 'Pack the node modules into a zipped file, to get easily deployed';
+  static description = 'Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease';
 
   static examples = [
     `$ packager package
-  packages node modules with all default options
+  packages node_modules with all default options
   `,
   ];
 
@@ -57,22 +57,22 @@ export default class Package extends Command {
       throw new Error('Not yet implemented');
     }
 
-    // Generating command
+    /** Generating command */
     const command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : ''].join(' ').trim();
     this.log(`Generated command: ${chalk.green(command)}`);
 
-    // Strating to pack node_modules
+    /** Strating to pack node_modules */
     childProcess
       .exec(command)
       .stdout?.on('data', async (chunk) => {
-        // Opening zip module
+        /** Opening zip module */
         const output = fs.createWriteStream(this.zipFileName),
           archive = archiver('zip', {
             zlib: { level: 9 },
             statConcurrency: 10,
           });
 
-        // Reading dependencies from the result
+        /** Reading dependencies from the result */
         const deps = packageManager === PackageManager.npm ? JSON.parse(chunk).dependencies : JSON.parse(chunk)[0].dependencies;
         const formattedDeps = Object.keys(deps);
 
@@ -95,10 +95,10 @@ export default class Package extends Command {
 
         archive.pipe(output);
 
-        // Generate table view of packing modules
+        /** Generate table view of packing modules */
         ux.table(
           formattedDeps.map((d, i) => ({ item: i, module: d })),
-          { item: { header: 'Item', minWidth: 8 }, module: { header: 'Module', minWidth: 10 } }
+          { item: { header: 'Item', minWidth: 3 }, module: { header: 'Module', minWidth: 10 } }
         );
 
         formattedDeps.forEach((d) => {

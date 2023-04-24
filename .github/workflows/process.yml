@@ -1,0 +1,31 @@
+name: Process
+run-name: Process
+
+on:
+  push:
+    branches:
+      - release
+      - master
+
+jobs:
+  version:
+    name: Version
+    continue-on-error: false
+    runs-on: ubuntu-22.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org
+      - uses: actions/setup-gitversion@v1.0.0
+        with:
+          gitversion-version: 5.1.1
+      - id: gitversion
+        run: GitVersion
+      - run: |
+          readonly VERSION=${{ steps.gitversion.outputs.SemVer }}
+          echo $VERSION
+          npm version $VERSION
+      - run: npm publish

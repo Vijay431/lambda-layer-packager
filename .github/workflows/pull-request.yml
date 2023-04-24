@@ -30,9 +30,10 @@ jobs:
         run: echo ${{ steps.vars.outputs.short_ref }}
       - uses: repo-sync/pull-request@v2
         with:
-          source_branch: "echo ${{ steps.vars.outputs.short_ref }}"
+          source_branch: |
+            echo ${{ steps.vars.outputs.short_ref }}
           destination_branch: |
-            branch=$(./scripts/branch.sh ${steps.vars.outputs.short_ref})
+            branch=$(bash ./scripts/branch.sh ${steps.vars.outputs.short_ref})
             echo $branch
           pr_template: ".github/create_pull_request.md"
           pr_assignee: "vijay431"

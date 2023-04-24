@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
-      - uses: actions/setup-gitversion@v1.0.0
+      - uses: StanleyGoldman/setup-gitversion@v1.0.1
         with:
           gitversion-version: 5.1.1
       - id: gitversion

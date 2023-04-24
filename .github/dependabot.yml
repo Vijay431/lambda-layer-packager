@@ -16,9 +16,9 @@ updates:
     commit-message:
       include: scope
       prefix: Vulnerability
-    target-branch: dev
+    target-branch: master
     labels:
-      - "fix"
+      - fix
       - vulnerability
     versioning-strategy: increase-if-necessary
 

@@ -29,12 +29,12 @@ jobs:
       - name: Branch Name
         run: |
           echo ${{ steps.vars.outputs.short_ref }}
-          export source_branch=${{ steps.vars.outputs.short_ref }}
-          export dest_branch=$(bash ./scripts/branch.sh $source_branch)
+          export SOURCE_BRANCH=${{ steps.vars.outputs.short_ref }}
+          export DEST_BRANCH=$(bash ./scripts/branch.sh $source_branch)
       - uses: repo-sync/pull-request@v2
         with:
-          source_branch: "$source_branch"
-          destination_branch: "$dest_branch"
+          source_branch: ${{ env.SOURCE_BRANCH }}
+          destination_branch: ${{ env.DEST_BRANCH }}
           pr_template: ".github/create_pull_request.md"
           pr_assignee: "vijay431"
           pr_draft: false

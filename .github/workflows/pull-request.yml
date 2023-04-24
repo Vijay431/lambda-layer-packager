@@ -32,8 +32,8 @@ jobs:
           export dest_branch=${{ steps.vars.outputs.short_ref }}
       - uses: repo-sync/pull-request@v2
         with:
-          source_branch: $dest_branch
-          destination_branch: $(bash ./scripts/branch.sh $dest_branch)
+          source_branch: "$dest_branch"
+          destination_branch: ${{ $(bash ./scripts/branch.sh ${{ dest_branch }}) }}
           pr_template: ".github/create_pull_request.md"
           pr_assignee: "vijay431"
           pr_draft: false

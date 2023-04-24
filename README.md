@@ -13,8 +13,9 @@ Lambda Layer Packager
 
 # Topics
 <!-- toc -->
-- [Usage](#usage)
-- [Commands](#commands)
+* [Topics](#topics)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
@@ -23,7 +24,7 @@ $ npm install -g lambda-layer-packager
 $ packager COMMAND
 running command...
 $ packager (--version)
-lambda-layer-packager/0.0.0 win32-x64 node-v18.12.1
+lambda-layer-packager/1.0.0 win32-x64 node-v18.12.1
 $ packager --help [COMMAND]
 USAGE
   $ packager COMMAND
@@ -32,18 +33,18 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-- [`packager hello`](#packager-hello)
-- [`packager help [COMMANDS]`](#packager-help-commands)
-- [`packager package`](#packager-package)
-- [`packager plugins`](#packager-plugins)
-- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
-- [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
-- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
-- [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
-- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
-- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
-- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
-- [`packager plugins:update`](#packager-pluginsupdate)
+* [`packager hello`](#packager-hello)
+* [`packager help [COMMANDS]`](#packager-help-commands)
+* [`packager package`](#packager-package)
+* [`packager plugins`](#packager-plugins)
+* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
+* [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
+* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
+* [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
+* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
+* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
+* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
+* [`packager plugins:update`](#packager-pluginsupdate)
 
 ## `packager hello`
 
@@ -61,7 +62,7 @@ EXAMPLES
     To get to know about the package command
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v1.0.0/dist/commands/hello/index.ts)_
 
 ## `packager help [COMMANDS]`
 
@@ -104,7 +105,7 @@ EXAMPLES
     packages node modules with all default options
 ```
 
-_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/package/index.ts)_
+_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v1.0.0/dist/commands/package/index.ts)_
 
 ## `packager plugins`
 

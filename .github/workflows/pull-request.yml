@@ -1,0 +1,41 @@
+name: Generate Pull Request
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  push:
+    branches:
+      - "master"
+      - "features/*"
+      - "releases/*"
+      - "pr/*"
+      - "hotfix/*"
+      - "support/*"
+      - "dev"
+
+jobs:
+  pull_request:
+    name: Pull Request
+    continue-on-error: true
+    runs-on: ubuntu-22.04
+    timeout-minutes: 1
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+      - name: Branch Name
+        run: |
+          echo ${{ steps.vars.outputs.short_ref }}
+          export SOURCE_BRANCH=${{ steps.vars.outputs.short_ref }}
+          export DEST_BRANCH=$(bash ./scripts/branch.sh $source_branch)
+      - uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ env.SOURCE_BRANCH }}
+          destination_branch: ${{ env.DEST_BRANCH }}
+          pr_template: ".github/create_pull_request.md"
+          pr_assignee: "vijay431"
+          pr_draft: false
+          pr_allow_empty: false

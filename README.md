@@ -1,15 +1,19 @@
-oclif-hello-world
+Lambda Layer Packager
 =================
 
-oclif example Hello World CLI
+[![Version](https://img.shields.io/npm/v/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
+[![Downloads/week](https://img.shields.io/npm/dw/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
+[![License](https://img.shields.io/npm/l/lambda-layer-packager.svg)](https://github.com/Vijay431/lambda-layer-packager/blob/master/package.json)
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![CircleCI](https://circleci.com/gh/oclif/hello-world/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/hello-world/tree/main)
-[![Downloads/week](https://img.shields.io/npm/dw/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
+`lambda-layer-packager` is to pack the **node_modules** based on the package managers of nodejs
 
+- npm
+- yarn (will be released in the upcoming version 1.1.0)
+- pnpm (will be released in upcoming version 1.2.0)
+
+# Topics
 <!-- toc -->
+* [Topics](#topics)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
@@ -20,7 +24,7 @@ $ npm install -g lambda-layer-packager
 $ packager COMMAND
 running command...
 $ packager (--version)
-lambda-layer-packager/0.0.0 win32-x64 node-v18.12.1
+lambda-layer-packager/0.0.4 win32-x64 node-v18.12.1
 $ packager --help [COMMAND]
 USAGE
   $ packager COMMAND
@@ -40,7 +44,7 @@ USAGE
 * [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
 * [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
 * [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
-* [`packager plugins update`](#packager-plugins-update)
+* [`packager plugins:update`](#packager-pluginsupdate)
 
 ## `packager hello`
 
@@ -55,10 +59,10 @@ DESCRIPTION
 
 EXAMPLES
   $ packager package --help
-    To get to know about the package command
+    To get to know about the package commands that are available
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/hello/index.ts)_
 
 ## `packager help [COMMANDS]`
 
@@ -82,7 +86,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.9
 
 ## `packager package`
 
-Pack the node modules into a zipped file, to get easily deployed
+Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease
 
 ```
 USAGE
@@ -94,14 +98,14 @@ FLAGS
   package-manager=<value>  [default: npm] Which package manager being used in this project?
 
 DESCRIPTION
-  Pack the node modules into a zipped file, to get easily deployed
+  Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease
 
 EXAMPLES
   $ packager package
-    packages node modules with all default options
+    packages node_modules with all default options
 ```
 
-_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/package/index.ts)_
+_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/package/index.ts)_
 
 ## `packager plugins`
 
@@ -121,7 +125,7 @@ EXAMPLES
   $ packager plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.5/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/index.ts)_
 
 ## `packager plugins:install PLUGIN...`
 
@@ -151,7 +155,7 @@ DESCRIPTION
 
 
 ALIASES
-  $ packager plugins add
+  $ packager plugins:add
 
 EXAMPLES
   $ packager plugins:install myplugin 
@@ -186,6 +190,8 @@ EXAMPLES
   $ packager plugins:inspect myplugin
 ```
 
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/inspect.ts)_
+
 ## `packager plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
@@ -214,7 +220,7 @@ DESCRIPTION
 
 
 ALIASES
-  $ packager plugins add
+  $ packager plugins:add
 
 EXAMPLES
   $ packager plugins:install myplugin 
@@ -223,6 +229,8 @@ EXAMPLES
 
   $ packager plugins:install someuser/someplugin
 ```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/install.ts)_
 
 ## `packager plugins:link PLUGIN`
 
@@ -251,28 +259,7 @@ EXAMPLES
   $ packager plugins:link myplugin
 ```
 
-## `packager plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ packager plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ packager plugins unlink
-  $ packager plugins remove
-```
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/link.ts)_
 
 ## `packager plugins:uninstall PLUGIN...`
 
@@ -293,8 +280,8 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ packager plugins unlink
-  $ packager plugins remove
+  $ packager plugins:unlink
+  $ packager plugins:remove
 ```
 
 ## `packager plugins:uninstall PLUGIN...`
@@ -316,17 +303,42 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ packager plugins unlink
-  $ packager plugins remove
+  $ packager plugins:unlink
+  $ packager plugins:remove
 ```
 
-## `packager plugins update`
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/uninstall.ts)_
+
+## `packager plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ packager plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ packager plugins:unlink
+  $ packager plugins:remove
+```
+
+## `packager plugins:update`
 
 Update installed plugins.
 
 ```
 USAGE
-  $ packager plugins update [-h] [-v]
+  $ packager plugins:update [-h] [-v]
 
 FLAGS
   -h, --help     Show CLI help.
@@ -335,4 +347,6 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/update.ts)_
 <!-- commandsstop -->

@@ -1,13 +1,14 @@
-import { Command, ux } from '@oclif/core';
 import chalk from 'chalk';
 import figlet from 'figlet';
+
+import { Command, ux } from '@oclif/core';
 
 export default class Hello extends Command {
   static description = 'Hello from Lambda Layer Packager!';
 
   static examples = [
     `$ packager package --help
-  To get to know about the package command
+  To get to know about the package commands that are available
   `,
   ];
 

@@ -11,21 +11,34 @@ jobs:
   version:
     name: Version
     continue-on-error: false
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
-      - uses: StanleyGoldman/setup-gitversion@v1.0.1
+      - uses: actions/setup-dotnet@v1
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
         with:
-          gitversion-version: 5.1.1
-      - id: gitversion
-        run: GitVersion
+          versionSpec: "5.x"
+      - name: Determine Version
+        id: gitversion # id to later be referenced
+        uses: gittools/actions/gitversion/execute@v0
       - run: |
-          readonly VERSION=${{ steps.gitversion.outputs.SemVer }}
+          readonly VERSION=${{ steps.gitversion.outputs.semVer }}
           echo $VERSION
+          npm install
+
+          echo "username: $(git log -n 1 --pretty=format:%an)"
+          git config user.name "$(git log -n 1 --pretty=format:%an)"
+
+          echo "email: $(git log -n 1 --pretty=format:%ae)"
+          git config user.email "$(git log -n 1 --pretty=format:%ae)"
+
           npm version $VERSION
       - run: npm publish

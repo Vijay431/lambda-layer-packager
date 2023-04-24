@@ -24,7 +24,7 @@ $ npm install -g lambda-layer-packager
 $ packager COMMAND
 running command...
 $ packager (--version)
-lambda-layer-packager/1.0.0 win32-x64 node-v18.12.1
+lambda-layer-packager/0.0.0 win32-x64 node-v18.12.1
 $ packager --help [COMMAND]
 USAGE
   $ packager COMMAND
@@ -62,7 +62,7 @@ EXAMPLES
     To get to know about the package command
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v1.0.0/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/hello/index.ts)_
 
 ## `packager help [COMMANDS]`
 
@@ -105,7 +105,7 @@ EXAMPLES
     packages node modules with all default options
 ```
 
-_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v1.0.0/dist/commands/package/index.ts)_
+_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.0/dist/commands/package/index.ts)_
 
 ## `packager plugins`
 

@@ -1,6 +1,10 @@
 name: Process
 run-name: Process
 
+permissions:
+  contents: write
+  packages: write
+
 on:
   push:
     branches:
@@ -34,11 +38,12 @@ jobs:
           echo $VERSION
           npm install
 
-          echo "username: $(git log -n 1 --pretty=format:%an)"
-          git config user.name "$(git log -n 1 --pretty=format:%an)"
-
-          echo "email: $(git log -n 1 --pretty=format:%ae)"
-          git config user.email "$(git log -n 1 --pretty=format:%ae)"
+          git config user.name "Vijay Gangatharan"
+          git config user.email "42581616+Vijay431@users.noreply.github.com"
 
           npm version $VERSION
-      - run: npm publish
+          git push
+
+          npm publish
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}

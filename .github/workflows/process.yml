@@ -1,6 +1,9 @@
 name: Process
 run-name: Process
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}
+
 permissions:
   contents: write
   packages: write
@@ -8,8 +11,8 @@ permissions:
 on:
   push:
     branches:
-      - release
       - master
+      - release
 
 jobs:
   version:
@@ -23,27 +26,22 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
       - uses: actions/setup-dotnet@v1
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0
+      - uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: "5.x"
-      - name: Determine Version
+      - name: Determine Version with git hostory
         id: gitversion # id to later be referenced
         uses: gittools/actions/gitversion/execute@v0
-      - run: |
+      - run: npm install
+      - name: Publishing package
+        run: |
           readonly VERSION=${{ steps.gitversion.outputs.semVer }}
-          echo $VERSION
-          npm install
-
           git config user.name "Vijay Gangatharan"
           git config user.email "42581616+Vijay431@users.noreply.github.com"
 
           npm version $VERSION
           git push
-
           npm publish
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}

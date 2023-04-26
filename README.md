@@ -28,7 +28,7 @@ $ npm install -g lambda-layer-packager
 $ packager COMMAND
 running command...
 $ packager (--version)
-lambda-layer-packager/0.0.4 win32-x64 node-v18.12.1
+lambda-layer-packager/1.0.0 win32-x64 node-v16.20.0
 $ packager --help [COMMAND]
 USAGE
   $ packager COMMAND
@@ -40,7 +40,7 @@ $ npm install -g lambda-layer-packager
 $ packager COMMAND
 running command...
 $ packager (--version)
-lambda-layer-packager/0.0.4 win32-x64 node-v18.12.1
+lambda-layer-packager/1.0.0 linux-x64 node-v18.16.0
 $ packager --help [COMMAND]
 USAGE
   $ packager COMMAND
@@ -78,7 +78,7 @@ EXAMPLES
     To get to know about the package commands that are available
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v1.0.0/dist/commands/hello/index.ts)_
 
 ## `packager help [COMMANDS]`
 
@@ -121,7 +121,7 @@ EXAMPLES
     packages node_modules with all default options
 ```
 
-_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/package/index.ts)_
+_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v1.0.0/dist/commands/package/index.ts)_
 
 ## `packager plugins`
 
@@ -366,9 +366,7 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/update.ts)_
 <!-- commandsstop -->
-* [`packager hello`](#packager-hello)
 * [`packager help [COMMANDS]`](#packager-help-commands)
-* [`packager package`](#packager-package)
 * [`packager plugins`](#packager-plugins)
 * [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
 * [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
@@ -378,24 +376,6 @@ _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/
 * [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
 * [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
 * [`packager plugins:update`](#packager-pluginsupdate)
-
-## `packager hello`
-
-Hello from Lambda Layer Packager!
-
-```
-USAGE
-  $ packager hello
-
-DESCRIPTION
-  Hello from Lambda Layer Packager!
-
-EXAMPLES
-  $ packager package --help
-    To get to know about the package commands that are available
-```
-
-_See code: [dist/commands/hello/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/hello/index.ts)_
 
 ## `packager help [COMMANDS]`
 
@@ -416,29 +396,6 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.9/src/commands/help.ts)_
-
-## `packager package`
-
-Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease
-
-```
-USAGE
-  $ packager package [--package-manager <value>] [--dir <value>] [--only-prod]
-
-FLAGS
-  dir=<value>              [default: nodejs/node_modules] Path of the packed node modules inside a zipped folder
-  only-prod                Pack only prod dependencies?
-  package-manager=<value>  [default: npm] Which package manager being used in this project?
-
-DESCRIPTION
-  Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease
-
-EXAMPLES
-  $ packager package
-    packages node_modules with all default options
-```
-
-_See code: [dist/commands/package/index.ts](https://github.com/Vijay431/lambda-layer-packager/blob/v0.0.4/dist/commands/package/index.ts)_
 
 ## `packager plugins`
 

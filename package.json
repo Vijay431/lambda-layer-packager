@@ -1,6 +1,6 @@
 {
   "name": "lambda-layer-packager",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "It will help you to package the node_modules required for the lambda to run in an efficient way",
   "author": "Vijay Gangatharan",
   "icon": "./assets/icon.png",
@@ -18,6 +18,10 @@
     "/oclif.manifest.json",
     "package.json"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "dependencies": {
     "@oclif/core": "^2",
     "@oclif/plugin-help": "^5",
@@ -91,7 +95,7 @@
     "version": "oclif readme && git add README.md"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=18.0.0"
   },
   "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",
   "keywords": [

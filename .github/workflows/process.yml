@@ -1,31 +1,47 @@
 name: Process
 run-name: Process
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}
+
+permissions:
+  contents: write
+  packages: write
+
 on:
   push:
     branches:
-      - release
       - master
+      - release
 
 jobs:
   version:
     name: Version
     continue-on-error: false
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org
-      - uses: StanleyGoldman/setup-gitversion@v1.0.1
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - uses: actions/setup-dotnet@v1
+      - uses: gittools/actions/gitversion/setup@v0
         with:
-          gitversion-version: 5.1.1
-      - id: gitversion
-        run: GitVersion
-      - run: |
-          readonly VERSION=${{ steps.gitversion.outputs.SemVer }}
-          echo $VERSION
+          versionSpec: "5.x"
+      - name: Determine Version with git hostory
+        id: gitversion # id to later be referenced
+        uses: gittools/actions/gitversion/execute@v0
+      - run: npm install
+      - name: Publishing package
+        run: |
+          readonly VERSION=${{ steps.gitversion.outputs.semVer }}
+          git config user.name "Vijay Gangatharan"
+          git config user.email "42581616+Vijay431@users.noreply.github.com"
+
           npm version $VERSION
-      - run: npm publish
+          git push
+          npm publish

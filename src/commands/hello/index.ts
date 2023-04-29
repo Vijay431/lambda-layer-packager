@@ -3,27 +3,29 @@ import figlet from 'figlet';
 
 import { Command, ux } from '@oclif/core';
 
+import { MinWidth } from '../../types/common';
+
 export default class Hello extends Command {
-  static description = 'Hello from Lambda Layer Packager!';
+  static description = 'Greetings from the Lambda Layer Packager!';
 
   static examples = [
-    `$ packager package --help
-  To get to know about the package commands that are available
+    `$ packager hello --help
+  Familiarize yourself with the available commands of the packager
   `,
   ];
 
+  private summary =
+    'A command-line interface (CLI) application designed to compress required libs in the node_modules directory into a .zip file that can be effortlessly deployed on AWS Serverless Lambda functions. This .zip file is compatible with both Terraform and Serverless frameworks, making it simple to deploy';
+  private commands = [{ name: 'package', description: 'To pack the node_modules into .zip file' }];
+
   async run(): Promise<void> {
     this.log(figlet.textSync('Lambda Layer Packager'));
-    this.log(
-      `\n${chalk.green(
-        'This CLI tool will help you to package the node modules into a zipped file which can be deployed as a Lambda Layer into AWS Serverless Lambda functions'
-      )}\n`
-    );
+    this.log(`\n${chalk.green(this.summary)}\n`);
 
     /** Available commands */
-    ux.table([{ name: 'package', description: 'To package the application node modules' }], {
-      name: { minWidth: 8 },
-      description: { minWidth: 20 },
+    ux.table(this.commands, {
+      name: { minWidth: MinWidth.short },
+      description: { minWidth: MinWidth.extra_large },
     });
   }
 }

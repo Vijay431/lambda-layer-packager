@@ -1,25 +1,20 @@
-Lambda Layer Packager
-=================
-
 [![Version](https://img.shields.io/npm/v/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 [![Downloads/week](https://img.shields.io/npm/dw/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 [![License](https://img.shields.io/npm/l/lambda-layer-packager.svg)](https://github.com/Vijay431/lambda-layer-packager/blob/master/package.json)
 
-`lambda-layer-packager` is to pack the **node_modules** based on the package managers of nodejs
+A command-line interface (CLI) application designed to compress required libs in the **node_modules** directory into a **.zip** file that can be effortlessly deployed on AWS Serverless Lambda functions. This **.zip** file is compatible with both Terraform and Serverless frameworks, making it simple to deploy
+
+# Available for
 
 - npm
 - yarn (will be released in the upcoming version 1.1.0)
 - pnpm (will be released in upcoming version 1.2.0)
 
 # Topics
-<!-- toc -->
-* [Topics](#topics)
-* [Usage](#usage)
-* [Commands](#commands)
 <!-- tocstop -->
-* [Topics](#topics)
-* [Usage](#usage)
-* [Commands](#commands)
+- [Topics](#topics)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
@@ -49,18 +44,18 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`packager hello`](#packager-hello)
-* [`packager help [COMMANDS]`](#packager-help-commands)
-* [`packager package`](#packager-package)
-* [`packager plugins`](#packager-plugins)
-* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
-* [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
-* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
-* [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
-* [`packager plugins:update`](#packager-pluginsupdate)
+- [`packager hello`](#packager-hello)
+- [`packager help [COMMANDS]`](#packager-help-commands)
+- [`packager package`](#packager-package)
+- [`packager plugins`](#packager-plugins)
+- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
+- [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
+- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
+- [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
+- [`packager plugins:update`](#packager-pluginsupdate)
 
 ## `packager hello`
 
@@ -366,16 +361,16 @@ DESCRIPTION
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.7/src/commands/plugins/update.ts)_
 <!-- commandsstop -->
-* [`packager help [COMMANDS]`](#packager-help-commands)
-* [`packager plugins`](#packager-plugins)
-* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
-* [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
-* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
-* [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
-* [`packager plugins:update`](#packager-pluginsupdate)
+- [`packager help [COMMANDS]`](#packager-help-commands)
+- [`packager plugins`](#packager-plugins)
+- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
+- [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
+- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
+- [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
+- [`packager plugins:update`](#packager-pluginsupdate)
 
 ## `packager help [COMMANDS]`
 

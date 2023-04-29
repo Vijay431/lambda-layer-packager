@@ -5,43 +5,46 @@ import fs from 'node:fs';
 
 import { Command, Flags, ux } from '@oclif/core';
 
-import { PackageManager } from '../../types/common';
+import { MinWidth, PackageManager } from '../../types/common';
 import { getCommandByPackageManager, getOnlyProdCommand } from '../../utils';
 
 export default class Package extends Command {
-  private zipFileName = 'layer.zip';
-
-  static description = 'Pack node_modules into a zipped file, which can be get deployed with AWS Serverless lambdas at ease';
+  static description =
+    'Zip required libs in the node_modules directory into a .zip file that can be effortlessly deployed with AWS Serverless Lambdas';
 
   static examples = [
     `$ packager package
-  packages node_modules with all default options
+  Packages the node_modules directory using all default options
   `,
   ];
 
   static flags = {
     'package-manager': Flags.string({
       default: 'npm',
-      description: 'Which package manager being used in this project?',
+      description: 'What package manager is being utilized in this project?',
       exactlyOne: [PackageManager.npm, PackageManager.yarn, PackageManager.pnpm],
       helpLabel: 'package-manager',
       name: 'package_manager',
     }),
     dir: Flags.string({
       default: 'nodejs/node_modules',
-      description: 'Path of the packed node modules inside a zipped folder',
+      description: 'Location of the compressed node_modules within the zipped folder',
       helpLabel: 'dir',
-      aliases: ['d'],
+      char: 'd',
       name: 'dir',
     }),
     'only-prod': Flags.boolean({
       default: true,
-      description: 'Pack only prod dependencies?',
+      description: 'Should only production dependencies be packed?',
       helpLabel: 'only-prod',
       name: 'only_prod',
       allowNo: true,
     }),
   };
+
+  private zipFileName = 'layer.zip';
+  private compressionLevel = 9;
+  private concurrency = 10;
 
   async run(): Promise<void> {
     const { flags } = await this.parse(Package),
@@ -49,9 +52,9 @@ export default class Package extends Command {
       dir = flags['dir'],
       onlyProd = flags['only-prod'];
 
-    this.log(`Chosen Package Manager: ${chalk.red(packageManager)}`);
-    this.log(`Given directory: ${chalk.red(dir)}`);
-    this.log(`Production dependencies: ${chalk.red(onlyProd)}`);
+    this.log(`Package manager: ${chalk.green(packageManager)}`);
+    this.log(`Directory: ${chalk.green(dir)}`);
+    this.log(`Only Production dependencies: ${chalk.green(onlyProd)}`);
 
     if (packageManager === PackageManager.yarn) {
       throw new Error('Not yet implemented');
@@ -59,7 +62,7 @@ export default class Package extends Command {
 
     /** Generating command */
     const command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : ''].join(' ').trim();
-    this.log(`Generated command: ${chalk.green(command)}`);
+    this.log(`Command: ${chalk.green(command)}`);
 
     /** Strating to pack node_modules */
     childProcess
@@ -68,8 +71,11 @@ export default class Package extends Command {
         /** Opening zip module */
         const output = fs.createWriteStream(this.zipFileName),
           archive = archiver('zip', {
-            zlib: { level: 9 },
-            statConcurrency: 10,
+            statConcurrency: this.concurrency,
+            gzip: true,
+            gzipOptions: {
+              level: this.compressionLevel,
+            },
           });
 
         /** Reading dependencies from the result */
@@ -98,7 +104,7 @@ export default class Package extends Command {
         /** Generate table view of packing modules */
         ux.table(
           formattedDeps.map((d, i) => ({ item: i, module: d })),
-          { item: { header: 'Item', minWidth: 3 }, module: { header: 'Module', minWidth: 10 } }
+          { item: { header: 'Item', minWidth: MinWidth.short }, module: { header: 'Module', minWidth: MinWidth.large } }
         );
 
         formattedDeps.forEach((d) => {

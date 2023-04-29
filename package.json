@@ -1,16 +1,14 @@
 {
   "name": "lambda-layer-packager",
   "version": "1.0.0",
-  "description": "It will help you to package the node_modules required for the lambda to run in an efficient way",
   "author": "Vijay Gangatharan",
-  "icon": "./assets/icon.png",
   "bin": {
     "packager": "./bin/run"
   },
   "homepage": "https://github.com/Vijay431/lambda-layer-packager",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "Vijay431/lambda-layer-packager",
+  "types": "dist/index.d.ts",
   "files": [
     "/bin",
     "/dist",
@@ -18,9 +16,14 @@
     "/oclif.manifest.json",
     "package.json"
   ],
+  "repository": "Vijay431/lambda-layer-packager",
+  "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
+  },
+  "engines": {
+    "node": ">=16"
   },
   "dependencies": {
     "@oclif/core": "^2",
@@ -94,12 +97,15 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",
   "keywords": [
-    "oclif"
-  ],
-  "types": "dist/index.d.ts"
+    "lambda",
+    "lambda-packager",
+    "layer",
+    "package",
+    "packager",
+    "serverless",
+    "serverless-layer-packager",
+    "serverless-packager",
+    "terraform"
+  ]
 }

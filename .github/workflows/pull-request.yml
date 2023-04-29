@@ -7,7 +7,6 @@ permissions:
 on:
   push:
     branches:
-      - "master"
       - "features/*"
       - "releases/*"
       - "pr/*"
@@ -23,19 +22,20 @@ jobs:
     timeout-minutes: 1
     steps:
       - uses: actions/checkout@v3
-      - name: Set output
+      - name: Set short branch name
         id: vars
         run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
-      - name: Branch Name
+      - name: Set source and destination branch names
         run: |
           echo ${{ steps.vars.outputs.short_ref }}
           export SOURCE_BRANCH=${{ steps.vars.outputs.short_ref }}
           export DEST_BRANCH=$(bash ./scripts/branch.sh $source_branch)
-      - uses: repo-sync/pull-request@v2
+      - name: Generate Pull Request
+        uses: repo-sync/pull-request@v2
         with:
           source_branch: ${{ env.SOURCE_BRANCH }}
           destination_branch: ${{ env.DEST_BRANCH }}
           pr_template: ".github/create_pull_request.md"
-          pr_assignee: "vijay431"
+          pr_assignee: "Vijay431"
           pr_draft: false
           pr_allow_empty: false

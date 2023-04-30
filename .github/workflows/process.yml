@@ -3,6 +3,8 @@ run-name: Process
 
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}
+  USERNAME: Vijay Gangatharan
+  EMAIL: 42581616+Vijay431@users.noreply.github.com
 
 permissions:
   contents: write
@@ -39,8 +41,8 @@ jobs:
       - name: Publishing package
         run: |
           readonly VERSION=${{ steps.gitversion.outputs.semVer }}
-          git config user.name "Vijay Gangatharan"
-          git config user.email "42581616+Vijay431@users.noreply.github.com"
+          git config user.name ${{ env.USERNAME }}
+          git config user.email ${{ env.EMAIL }}
 
           npm version $VERSION
           git push

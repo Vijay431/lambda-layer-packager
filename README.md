@@ -1,8 +1,8 @@
+A command-line interface (CLI) application designed to compress required libs in the **node_modules** directory into a **.zip** file that can be effortlessly deployed on AWS Serverless Lambda functions. This **.zip** file is compatible with both Terraform and Serverless frameworks, making it simple to deploy
+
 [![Version](https://img.shields.io/npm/v/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 [![Downloads/week](https://img.shields.io/npm/dw/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 [![License](https://img.shields.io/npm/l/lambda-layer-packager.svg)](https://github.com/Vijay431/lambda-layer-packager/blob/master/package.json)
-
-A command-line interface (CLI) application designed to compress required libs in the **node_modules** directory into a **.zip** file that can be effortlessly deployed on AWS Serverless Lambda functions. This **.zip** file is compatible with both Terraform and Serverless frameworks, making it simple to deploy
 
 # Available for
 
@@ -32,16 +32,16 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`packager help [COMMANDS]`](#packager-help-commands)
-* [`packager plugins`](#packager-plugins)
-* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
-* [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
-* [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
-* [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
-* [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
-* [`packager plugins:update`](#packager-pluginsupdate)
+- [`packager help [COMMANDS]`](#packager-help-commands)
+- [`packager plugins`](#packager-plugins)
+- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin)
+- [`packager plugins:inspect PLUGIN...`](#packager-pluginsinspect-plugin)
+- [`packager plugins:install PLUGIN...`](#packager-pluginsinstall-plugin-1)
+- [`packager plugins:link PLUGIN`](#packager-pluginslink-plugin)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-1)
+- [`packager plugins:uninstall PLUGIN...`](#packager-pluginsuninstall-plugin-2)
+- [`packager plugins:update`](#packager-pluginsupdate)
 
 ## `packager help [COMMANDS]`
 

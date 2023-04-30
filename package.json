@@ -1,12 +1,11 @@
 {
+  "author": "Vijay Gangatharan",
   "name": "lambda-layer-packager",
   "version": "1.0.1",
-  "author": "Vijay Gangatharan",
+  "license": "MIT",
   "bin": {
     "packager": "./bin/run"
   },
-  "homepage": "https://github.com/Vijay431/lambda-layer-packager",
-  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -14,9 +13,12 @@
     "/dist",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
-    "package.json"
+    "package.json",
+    "README.md",
+    "LICENSE"
   ],
   "repository": "Vijay431/lambda-layer-packager",
+  "homepage": "https://github.com/Vijay431/lambda-layer-packager",
   "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",
   "publishConfig": {
     "access": "public",
@@ -30,9 +32,9 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.4.4",
     "archiver": "^5.3.1",
-    "chalk": "^4.1.0",
+    "chalk": "^5.2.0",
     "figlet": "^1.6.0",
-    "inquirer": "^7.2.0"
+    "inquirer": "^9.2.0"
   },
   "devDependencies": {
     "@oclif/test": "^2.3.15",
@@ -40,7 +42,7 @@
     "@types/chai": "^4",
     "@types/chalk": "^2.2.0",
     "@types/figlet": "^1.5.5",
-    "@types/inquirer": "^6.5.0",
+    "@types/inquirer": "^9.0.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
     "chai": "^4",
@@ -48,7 +50,7 @@
     "eslint-config-oclif": "^4",
     "eslint-config-oclif-typescript": "^1.0.3",
     "eslint-config-prettier": "^8",
-    "mocha": "^9",
+    "mocha": "^10.2.0",
     "oclif": "^3",
     "prettier": "^2.8.7",
     "shx": "^0.3.4",

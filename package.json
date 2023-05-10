@@ -42,7 +42,7 @@
     "@types/figlet": "^1.5.5",
     "@types/inquirer": "^6.5.0",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.15.11",
+    "@types/node": "^20.1.2",
     "chai": "^4",
     "eslint": "^8.38.0",
     "eslint-config-oclif": "^4",

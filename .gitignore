@@ -1,12 +1,12 @@
 .vscode
 
-/dist
-/lib
-/tmp
-
-node_modules
+dist/**
+lib/**
+node_modules/**
+tmp/**
 
 oclif.manifest.json
+package-lock.json
 
-*.zip
 *.tgz
+*.zip

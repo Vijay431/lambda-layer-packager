@@ -1,22 +1,21 @@
 {
-  "name": "lambda-layer-packager",
-  "version": "1.0.1",
   "author": "Vijay Gangatharan",
-  "bin": {
-    "packager": "./bin/run"
-  },
-  "homepage": "https://github.com/Vijay431/lambda-layer-packager",
+  "name": "lambda-layer-packager",
+  "version": "2.0.0",
   "license": "MIT",
+  "bin": {
+    "packager": "dist/src/commands/index.js"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "/bin",
     "/dist",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json",
-    "package.json"
+    "package.json",
+    "README.md",
+    "LICENSE"
   ],
   "repository": "Vijay431/lambda-layer-packager",
+  "homepage": "https://github.com/Vijay431/lambda-layer-packager",
   "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",
   "publishConfig": {
     "access": "public",
@@ -26,76 +25,37 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@oclif/core": "^2",
-    "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.4.4",
     "archiver": "^5.3.1",
-    "chalk": "^4.1.0",
-    "figlet": "^1.6.0",
-    "inquirer": "^7.2.0"
+    "chalk": "^5.2.0",
+    "commander": "^10.0.1",
+    "figlet": "^1.6.0"
   },
   "devDependencies": {
-    "@oclif/test": "^2.3.15",
     "@types/archiver": "^5.3.2",
-    "@types/chai": "^4",
+    "@types/chai": "^4.3.5",
     "@types/chalk": "^2.2.0",
     "@types/figlet": "^1.5.5",
-    "@types/inquirer": "^6.5.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
-    "chai": "^4",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
+    "chai": "^4.3.7",
     "eslint": "^8.38.0",
-    "eslint-config-oclif": "^4",
-    "eslint-config-oclif-typescript": "^1.0.3",
-    "eslint-config-prettier": "^8",
-    "mocha": "^9",
-    "oclif": "^3",
+    "eslint-config-prettier": "^8.8.0",
+    "mocha": "^10.2.0",
     "prettier": "^2.8.7",
     "shx": "^0.3.4",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4"
   },
-  "oclif": {
-    "bin": "packager",
-    "dirname": "packager",
-    "commands": "./dist/commands",
-    "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "oclif",
-      "oclif-typescript",
-      "prettier"
-    ],
-    "root": true,
-    "env": {
-      "es6": true,
-      "mocha": true,
-      "node": true
-    }
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "bracketSpacing": true,
-    "endOfLine": "lf",
-    "jsxSingleQuote": true,
-    "printWidth": 140,
-    "semi": true,
-    "singleAttributePerLine": true,
-    "singleQuote": true
-  },
   "scripts": {
-    "build": "shx rm -rf dist && shx rm -rf layer.zip && tsc -b",
-    "lint": "eslint . --fix",
-    "postpack": "shx rm -f oclif.manifest.json",
-    "posttest": "npm run lint",
-    "prepack": "npm run build && oclif manifest && oclif readme",
-    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif readme && git add README.md && git commit -m \"feat: Update README.md\""
+    "lint": "eslint --fix .",
+    "format": "prettier --write .",
+    "stage": "npx lint-staged",
+    "prebuild": "shx rm -rf dist && shx rm -rf layer.zip",
+    "build": "tsc -b",
+    "test": "mocha --forbid-only \"tests/**/*.test.ts\""
   },
   "keywords": [
     "lambda",

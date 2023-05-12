@@ -1,1 +1,9 @@
-/dist
+.github/**
+.husky/**
+assets/**
+bin/**
+dist/**
+node_modules/**
+
+*.json
+*.md

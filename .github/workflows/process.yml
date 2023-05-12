@@ -12,36 +12,20 @@ on:
   push:
     branches:
       - master
-      - release
 
 jobs:
   version:
-    name: Version
     continue-on-error: false
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - uses: actions/setup-dotnet@v1
-      - uses: gittools/actions/gitversion/setup@v0
-        with:
-          versionSpec: "5.x"
-      - name: Determine Version with git hostory
-        id: gitversion # id to later be referenced
-        uses: gittools/actions/gitversion/execute@v0
+          cache: "npm"
+          cache-dependency-path: "package-lock.json"
       - run: npm install
       - name: Publishing package
-        run: |
-          readonly VERSION=${{ steps.gitversion.outputs.semVer }}
-          git config user.name "Vijay Gangatharan"
-          git config user.email "42581616+Vijay431@users.noreply.github.com"
-
-          npm version $VERSION
-          git push
-          npm publish
+        run: npm publish --access=public

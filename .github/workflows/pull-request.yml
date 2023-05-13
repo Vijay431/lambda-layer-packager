@@ -7,7 +7,7 @@ permissions:
 on:
   push:
     branches:
-      - "features/*"
+      - "feature/*"
       - "hotfix/*"
       - "support/*"
       - "dev"
@@ -28,7 +28,7 @@ jobs:
           source_branch=${{ steps.vars.outputs.short_ref }}
           dest_branch="dev"
 
-          if [[ $source_branch == "dev" || $source_branch == *"feature"*  ]]; then
+          if [[ $source_branch == "dev" ]]; then
             dest_branch="master"
           elif [[ $source_branch == *"support"* ]]; then
             dest_branch="master"

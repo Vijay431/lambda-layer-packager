@@ -11,6 +11,7 @@ interface PackageCommand {
   packageManager: PackageManager;
   dir: string;
   onlyProd: boolean;
+  list?: boolean;
 }
 
 /**
@@ -32,21 +33,22 @@ export default function package_command(): Command {
       new Option('--package-manager', 'What package manager is being utilized in this project?')
         .choices([PackageManager.npm])
         .default(PackageManager.npm, 'default package manager')
-        .makeOptionMandatory(true)
+        .makeOptionMandatory()
     )
     .addOption(
       new Option('-d, --dir', 'Location of the compressed node_modules within the zipped folder')
         .default('nodejs/node_modules', 'default node_modules directory')
-        .makeOptionMandatory(true)
+        .makeOptionMandatory()
     )
     .addOption(
-      new Option('--only-prod', 'Should only production dependencies be packed?')
-        .default(true)
-        .makeOptionMandatory(true)
+      new Option('--only-prod', 'Should only production dependencies be packed?').default(true).makeOptionMandatory()
     )
-    .option('-e, --examples', 'show exmaples of command usage')
+    .addOption(
+      new Option('-l, --list', 'list all dependencies which will be packed').default(false).makeOptionMandatory(false)
+    )
+    .allowUnknownOption(false)
     .action((args: PackageCommand) => {
-      const { dir, onlyProd, packageManager } = args,
+      const { dir, onlyProd, packageManager, list } = args,
         /** Generating command */
         command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : '']
           .join(' ')
@@ -56,6 +58,21 @@ export default function package_command(): Command {
       childProcess
         .exec(command)
         .stdout?.on('data', async (chunk) => {
+          /** Reading dependencies from the result */
+          const deps =
+              packageManager === PackageManager.npm
+                ? JSON.parse(chunk).dependencies
+                : JSON.parse(chunk)[0].dependencies,
+            formattedDeps = Object.keys(deps);
+
+          if (list) {
+            console.log('Dependencies which will be packed:');
+            formattedDeps.forEach((d) => {
+              console.log(d);
+            });
+            return;
+          }
+
           /** Opening zip module */
           const output = fs.createWriteStream(zipFileName),
             archive = archiver('zip', {
@@ -64,13 +81,7 @@ export default function package_command(): Command {
               gzipOptions: {
                 level: compressionLevel,
               },
-            }),
-            /** Reading dependencies from the result */
-            deps =
-              packageManager === PackageManager.npm
-                ? JSON.parse(chunk).dependencies
-                : JSON.parse(chunk)[0].dependencies,
-            formattedDeps = Object.keys(deps);
+            });
 
           output
             .on('error', (err) => {
@@ -84,9 +95,7 @@ export default function package_command(): Command {
               }
             })
             .on('close', () => {
-              const bytes = archive.pointer();
-              const kb = <any>(bytes / 1000).toFixed(2);
-              const mb = <any>(kb / 1000).toFixed(2);
+              console.log(`${zipFileName} has been created and placed [default path: / ]`);
             });
 
           archive.pipe(output);

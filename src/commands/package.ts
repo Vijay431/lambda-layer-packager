@@ -83,8 +83,8 @@ export default function package_command(): Command {
               statConcurrency: concurrency,
               gzip: true,
               gzipOptions: {
-                level: compressionLevel
-              }
+                level: compressionLevel,
+              },
             });
 
           output

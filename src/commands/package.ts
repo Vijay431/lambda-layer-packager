@@ -12,6 +12,8 @@ interface PackageCommand {
   dir: string;
   onlyProd: boolean;
   list?: boolean;
+
+  [x: string]: any;
 }
 
 /**
@@ -30,18 +32,20 @@ export default function package_command(): Command {
     .description(cli.package.description)
     .summary(cli.package.summary)
     .addOption(
-      new Option('--package-manager', 'What package manager is being utilized in this project?')
-        .choices([PackageManager.npm])
+      new Option('--package-manager [package-manager]', 'What package manager is being utilized in this project?')
+        .choices([PackageManager.npm, PackageManager.yarn])
         .default(PackageManager.npm, 'default package manager')
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-d, --dir', 'Location of the compressed node_modules within the zipped folder')
+      new Option('-d, --dir [directory]', 'Location of the compressed node_modules within the zipped folder')
         .default('nodejs/node_modules', 'default node_modules directory')
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('--only-prod', 'Should only production dependencies be packed?').default(true).makeOptionMandatory()
+      new Option('--only-prod [prod-dependencies]', 'Should only production dependencies be packed?')
+        .default(true)
+        .makeOptionMandatory()
     )
     .addOption(
       new Option('-l, --list', 'list all dependencies which will be packed').default(false).makeOptionMandatory(false)
@@ -59,11 +63,11 @@ export default function package_command(): Command {
         .exec(command)
         .stdout?.on('data', async (chunk) => {
           /** Reading dependencies from the result */
-          const deps =
-              packageManager === PackageManager.npm
-                ? JSON.parse(chunk).dependencies
-                : JSON.parse(chunk)[0].dependencies,
-            formattedDeps = Object.keys(deps);
+          const deps = [PackageManager.npm, PackageManager.yarn].includes(packageManager)
+              ? JSON.parse(chunk).dependencies
+              : JSON.parse(chunk)[0].dependencies,
+            /** push `@types` always */
+            formattedDeps = [...Object.keys(deps), '@types'];
 
           if (list) {
             console.log('Dependencies which will be packed:');
@@ -95,7 +99,7 @@ export default function package_command(): Command {
               }
             })
             .on('close', () => {
-              console.log(`${zipFileName} has been created and placed [default path: / ]`);
+              console.log(`${zipFileName} has been created and placed in project default path`);
             });
 
           archive.pipe(output);

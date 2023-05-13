@@ -7,7 +7,7 @@ permissions:
 on:
   push:
     branches:
-      - "features/*"
+      - "feature/*"
       - "hotfix/*"
       - "support/*"
       - "dev"
@@ -30,8 +30,6 @@ jobs:
 
           if [[ $source_branch == "dev" ]]; then
             dest_branch="master"
-          elif [[ $source_branch == *"feature"* ]]; then
-            dest_branch="feature"
           elif [[ $source_branch == *"support"* ]]; then
             dest_branch="master"
           elif [[ $source_branch == *"hotfix"* ]]; then

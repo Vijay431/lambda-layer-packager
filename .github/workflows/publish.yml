@@ -1,11 +1,8 @@
-name: Process
-run-name: Process
-
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}
 
 permissions:
-  contents: write
+  contents: read
   packages: write
 
 on:

@@ -1,7 +1,7 @@
 {
   "author": "Vijay Gangatharan",
   "name": "lambda-layer-packager",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "license": "MIT",
   "bin": {
     "packager": "dist/src/commands/index.js"

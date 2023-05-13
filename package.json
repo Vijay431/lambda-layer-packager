@@ -1,15 +1,27 @@
 {
   "author": "Vijay Gangatharan",
   "name": "lambda-layer-packager",
-  "version": "2.0.0",
+  "version": "2.2.0.0001",
   "license": "MIT",
   "bin": {
     "packager": "dist/src/commands/index.js"
   },
+  "keywords": [
+    "lambda",
+    "lambda-packager",
+    "layer",
+    "package",
+    "packager",
+    "serverless",
+    "serverless-layer-packager",
+    "serverless-packager",
+    "terraform"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "/dist",
+    "dist",
+    "!dist/package.json",
     "package.json",
     "README.md",
     "LICENSE"
@@ -26,23 +38,19 @@
   },
   "dependencies": {
     "archiver": "^5.3.1",
-    "chalk": "^5.2.0",
     "commander": "^10.0.1",
     "figlet": "^1.6.0"
   },
   "devDependencies": {
     "@types/archiver": "^5.3.2",
-    "@types/chai": "^4.3.5",
-    "@types/chalk": "^2.2.0",
     "@types/figlet": "^1.5.5",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
-    "chai": "^4.3.7",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
-    "mocha": "^10.2.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.7",
     "shx": "^0.3.4",
     "ts-node": "^10.9.1",
@@ -53,19 +61,8 @@
     "lint": "eslint --fix .",
     "format": "prettier --write .",
     "stage": "npx lint-staged",
+    "prepack": "npm run build",
     "prebuild": "shx rm -rf dist && shx rm -rf layer.zip",
-    "build": "tsc -b",
-    "test": "mocha --forbid-only \"tests/**/*.test.ts\""
-  },
-  "keywords": [
-    "lambda",
-    "lambda-packager",
-    "layer",
-    "package",
-    "packager",
-    "serverless",
-    "serverless-layer-packager",
-    "serverless-packager",
-    "terraform"
-  ]
+    "build": "tsc -b"
+  }
 }

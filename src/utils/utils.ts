@@ -8,11 +8,9 @@ import { PackageManager } from '../types/common';
 export function getCommandByPackageManager(packageManager: PackageManager): string {
   if (packageManager === PackageManager.pnpm) {
     return 'pnpm ls --json';
-  } else if (packageManager === PackageManager.yarn) {
-    return 'yarn list';
-  } else {
-    return 'npm ls --json';
   }
+
+  return 'npm ls --json';
 }
 
 /**
@@ -21,11 +19,9 @@ export function getCommandByPackageManager(packageManager: PackageManager): stri
  * @argument {PackageManager} [packageManager]
  */
 export function getOnlyProdCommand(packageManager: PackageManager) {
-  if (packageManager === PackageManager.pnpm) {
+  if ([PackageManager.pnpm, PackageManager.yarn].includes(packageManager)) {
     return '--prod';
-  } else if (packageManager === PackageManager.yarn) {
-    return '--production';
-  } else {
-    return '--omit=dev';
   }
+
+  return '--omit=dev';
 }

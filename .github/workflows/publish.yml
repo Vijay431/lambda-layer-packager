@@ -1,11 +1,10 @@
-name: Process
-run-name: Process
+name: Publish
 
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}
 
 permissions:
-  contents: write
+  contents: read
   packages: write
 
 on:
@@ -24,8 +23,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-          cache: "npm"
-          cache-dependency-path: "package-lock.json"
       - run: npm install
       - name: Publishing package
         run: npm publish --access=public

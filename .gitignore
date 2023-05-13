@@ -7,6 +7,8 @@ tmp/**
 
 oclif.manifest.json
 package-lock.json
+yarn.lock
+pnpm.yaml
 
 *.tgz
 *.zip

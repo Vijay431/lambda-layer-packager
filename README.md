@@ -7,12 +7,10 @@ A command-line interface (CLI) application designed to compress required libs in
 # Available for
 
 - npm
-- yarn (will be released in the upcoming version 2.1.0)
-- pnpm (will be released in upcoming version 2.2.0)
+- yarn
 
 # Topics
 
-- [Topics](#topics)
 - [Usage](#usage)
 - [Commands](#commands)
 

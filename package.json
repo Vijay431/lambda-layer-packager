@@ -1,7 +1,7 @@
 {
   "author": "Vijay Gangatharan",
   "name": "lambda-layer-packager",
-  "version": "2.2.0",
+  "version": "2.2.0.0001",
   "license": "MIT",
   "bin": {
     "packager": "dist/src/commands/index.js"
@@ -20,7 +20,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "/dist",
+    "dist",
+    "!dist/package.json",
     "package.json",
     "README.md",
     "LICENSE"
@@ -60,6 +61,7 @@
     "lint": "eslint --fix .",
     "format": "prettier --write .",
     "stage": "npx lint-staged",
+    "prepack": "npm run build",
     "prebuild": "shx rm -rf dist && shx rm -rf layer.zip",
     "build": "tsc -b"
   }

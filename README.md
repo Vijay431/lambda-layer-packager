@@ -7,10 +7,10 @@ A command-line interface (CLI) application designed to compress required libs in
 # Available for
 
 - npm
+- yarn
 
 # Topics
 
-- [Topics](#topics)
 - [Usage](#usage)
 - [Commands](#commands)
 

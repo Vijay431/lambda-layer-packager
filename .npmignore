@@ -5,10 +5,9 @@
 tsconfig.json
 
 ## Directories
-.github/**
-.husky/**
-assets/**
-node_modules/**
+.github
+.husky
+node_modules
 
 ## Extensions
 *.tgz

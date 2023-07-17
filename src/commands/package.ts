@@ -78,7 +78,7 @@ export default function package_command(): Command {
           }
 
           /** Opening zip module */
-          zipFileName = name ?? 'layer' + '.zip';
+          zipFileName = (name ?? 'layer') + '.zip';
           const output = fs.createWriteStream(zipFileName),
             archive = archiver('zip', {
               statConcurrency: concurrency,

@@ -8,12 +8,11 @@ import { PackageManager } from '../types/common';
 import { getCommandByPackageManager, getOnlyProdCommand } from '../utils';
 
 interface PackageCommand {
+  name?: string;
   packageManager: PackageManager;
-  dir: string;
-  onlyProd: boolean;
+  dir?: string;
+  onlyProd?: boolean;
   list?: boolean;
-
-  [x: string]: any;
 }
 
 /**
@@ -23,14 +22,15 @@ interface PackageCommand {
  */
 export default function package_command(): Command {
   const command = new Command(),
-    zipFileName = 'layer.zip',
     compressionLevel = 9,
     concurrency = 10;
+  let zipFileName = 'layer.zip';
 
   return command
     .command('package')
     .description(cli.package.description)
     .summary(cli.package.summary)
+    .addOption(new Option('--name [name]', 'Output archive file name').default('layer').makeOptionMandatory())
     .addOption(
       new Option('--package-manager [package-manager]', 'What package manager is being utilized in this project?')
         .choices([PackageManager.npm, PackageManager.yarn])
@@ -48,11 +48,11 @@ export default function package_command(): Command {
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-l, --list', 'list all dependencies which will be packed').default(false).makeOptionMandatory(false)
+      new Option('-l, --list', 'list all dependencies which will be packed').default(false).makeOptionMandatory()
     )
     .allowUnknownOption(false)
     .action((args: PackageCommand) => {
-      const { dir, onlyProd, packageManager, list } = args,
+      const { name, dir, onlyProd, packageManager, list } = args,
         /** Generating command */
         command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : '']
           .join(' ')
@@ -78,6 +78,7 @@ export default function package_command(): Command {
           }
 
           /** Opening zip module */
+          zipFileName = name ?? 'layer' + '.zip';
           const output = fs.createWriteStream(zipFileName),
             archive = archiver('zip', {
               statConcurrency: concurrency,

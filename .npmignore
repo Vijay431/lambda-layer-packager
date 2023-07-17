@@ -1,0 +1,14 @@
+## Files
+.eslint*
+.lintstagedrc
+.prettier*
+tsconfig.json
+
+## Directories
+.github/**
+.husky/**
+assets/**
+node_modules/**
+
+## Extensions
+*.tgz

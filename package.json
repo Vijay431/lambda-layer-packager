@@ -17,14 +17,6 @@
     "serverless-packager",
     "terraform"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "/dist",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
   "repository": "Vijay431/lambda-layer-packager",
   "homepage": "https://github.com/Vijay431/lambda-layer-packager",
   "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",

@@ -12,7 +12,7 @@ updates:
     pull-request-branch-name:
       separator: "_"
     assignees:
-      - "vijay431"
+      - "Vijay431"
     commit-message:
       include: scope
       prefix: Vulnerability

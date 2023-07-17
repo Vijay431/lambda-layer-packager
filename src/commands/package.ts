@@ -8,11 +8,11 @@ import { PackageManager } from '../types/common';
 import { getCommandByPackageManager, getOnlyProdCommand } from '../utils';
 
 interface PackageCommand {
-  name?: string;
+  dir: string;
+  list: boolean;
+  name: string;
+  onlyProd: boolean;
   packageManager: PackageManager;
-  dir?: string;
-  onlyProd?: boolean;
-  list?: boolean;
 }
 
 /**
@@ -52,7 +52,7 @@ export default function package_command(): Command {
     )
     .allowUnknownOption(false)
     .action((args: PackageCommand) => {
-      const { name, dir, onlyProd, packageManager, list } = args,
+      const { dir, list, name, onlyProd, packageManager } = args,
         /** Generating command */
         command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : '']
           .join(' ')

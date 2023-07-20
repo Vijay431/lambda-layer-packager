@@ -1,13 +1,13 @@
-.vscode
-
-dist/**
-lib/**
-node_modules/**
-tmp/**
-
-oclif.manifest.json
+## Files
 package-lock.json
-yarn.lock
 
+## Directories
+.vscode
+dist
+lib
+node_modules
+tmp
+
+## Extensions
 *.tgz
 *.zip

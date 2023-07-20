@@ -53,7 +53,7 @@
     "lint": "eslint --fix .",
     "format": "prettier --write .",
     "stage": "npx lint-staged",
-    "prebuild": "shx rm -rf dist && shx rm -rf layer.zip",
+    "prebuild": "shx rm -rf dist",
     "build": "tsc -b"
   }
 }

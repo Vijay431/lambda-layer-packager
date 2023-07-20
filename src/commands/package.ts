@@ -30,7 +30,9 @@ export default function package_command(): Command {
     .command('package')
     .description(cli.package.description)
     .summary(cli.package.summary)
-    .addOption(new Option('--name [name]', 'Output archive file name').default('layer').makeOptionMandatory())
+    .addOption(
+      new Option('--name [name]', 'Name of the archive file (without extension)').default('layer').makeOptionMandatory()
+    )
     .addOption(
       new Option('--package-manager [package-manager]', 'What package manager is being utilized in this project?')
         .choices([PackageManager.npm, PackageManager.yarn])
@@ -38,7 +40,7 @@ export default function package_command(): Command {
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-d, --dir [directory]', 'Location of the compressed node_modules within the zipped folder')
+      new Option('-d, --dir [directory]', 'Directory of the compressed node_modules within the archive file')
         .default('nodejs/node_modules', 'default node_modules directory')
         .makeOptionMandatory()
     )
@@ -48,7 +50,7 @@ export default function package_command(): Command {
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-l, --list', 'list all dependencies which will be packed').default(false).makeOptionMandatory()
+      new Option('-l, --list', 'List all dependencies which will be packed').default(false).makeOptionMandatory()
     )
     .allowUnknownOption(false)
     .action((args: PackageCommand) => {

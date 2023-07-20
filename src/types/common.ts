@@ -5,6 +5,7 @@ export enum PackageManager {
   pnpm = 'pnpm',
 }
 
+/** @deprecated */
 /** @description Minimun width for the CLI Table */
 export enum MinWidth {
   short = 4,

@@ -1,17 +1,23 @@
 {
-  "include": ["src"],
+  "include": [
+    "src",
+    "assets"
+  ],
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-
-    "lib": ["DOM", "ES2022"],
+    "lib": [
+      "DOM",
+      "ES2022"
+    ],
     "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "dist",
     "target": "ES6",
-    "typeRoots": ["./node_modules/@types"],
-
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,

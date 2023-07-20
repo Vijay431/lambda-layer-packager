@@ -1,6 +1,13 @@
-.github/**
-.husky/**
-assets/**
-bin/**
-dist/**
-node_modules/**
+## Files
+
+## Directories
+.github
+.husky
+assets
+bin
+dist
+node_modules
+
+## Extensions
+*.json
+*.md

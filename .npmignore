@@ -1,13 +1,13 @@
 ## Files
+.eslint*
+.lintstagedrc
+.prettier*
+tsconfig.json
 
 ## Directories
 .github
 .husky
-assets
-bin
-dist
 node_modules
 
 ## Extensions
-*.json
-*.md
+*.tgz

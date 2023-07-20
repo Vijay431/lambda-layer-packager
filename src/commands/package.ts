@@ -8,12 +8,11 @@ import { PackageManager } from '../types/common';
 import { getCommandByPackageManager, getOnlyProdCommand } from '../utils';
 
 interface PackageCommand {
-  packageManager: PackageManager;
   dir: string;
+  list: boolean;
+  name: string;
   onlyProd: boolean;
-  list?: boolean;
-
-  [x: string]: any;
+  packageManager: PackageManager;
 }
 
 /**
@@ -23,14 +22,17 @@ interface PackageCommand {
  */
 export default function package_command(): Command {
   const command = new Command(),
-    zipFileName = 'layer.zip',
     compressionLevel = 9,
     concurrency = 10;
+  let zipFileName = 'layer.zip';
 
   return command
     .command('package')
     .description(cli.package.description)
     .summary(cli.package.summary)
+    .addOption(
+      new Option('--name [name]', 'Name of the archive file (without extension)').default('layer').makeOptionMandatory()
+    )
     .addOption(
       new Option('--package-manager [package-manager]', 'What package manager is being utilized in this project?')
         .choices([PackageManager.npm, PackageManager.yarn])
@@ -38,7 +40,7 @@ export default function package_command(): Command {
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-d, --dir [directory]', 'Location of the compressed node_modules within the zipped folder')
+      new Option('-d, --dir [directory]', 'Directory of the compressed node_modules within the archive file')
         .default('nodejs/node_modules', 'default node_modules directory')
         .makeOptionMandatory()
     )
@@ -48,11 +50,11 @@ export default function package_command(): Command {
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-l, --list', 'list all dependencies which will be packed').default(false).makeOptionMandatory(false)
+      new Option('-l, --list', 'List all dependencies which will be packed').default(false).makeOptionMandatory()
     )
     .allowUnknownOption(false)
     .action((args: PackageCommand) => {
-      const { dir, onlyProd, packageManager, list } = args,
+      const { dir, list, name, onlyProd, packageManager } = args,
         /** Generating command */
         command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : '']
           .join(' ')
@@ -78,6 +80,7 @@ export default function package_command(): Command {
           }
 
           /** Opening zip module */
+          zipFileName = (name ?? 'layer') + '.zip';
           const output = fs.createWriteStream(zipFileName),
             archive = archiver('zip', {
               statConcurrency: concurrency,

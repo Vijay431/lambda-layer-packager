@@ -56,9 +56,11 @@ ARGUMENTS
   package  Command to show help for.
 
 FLAGS
+  --name             [default: layer] Name of the archive file (without extension) 
   --package-manager  [default: npm] What package manager is being utilized in this project?
-  -d, --dir          [default: nodejs/default] Location of the compressed node_modules within the zipped folder
+  -d, --dir          [default: nodejs/node_modules] Directory of the compressed node_modules within the archive file?
   --only-prod        [default: true] Should only production dependencies be packed?
+  -l, --list         [default: false] List all dependencies which will be packed
   -h, --help         output commands available
 
 DESCRIPTION

@@ -8,7 +8,7 @@ on:
   push:
     branches:
       - "feature/*"
-      - "hotfix/*"
+      - "hotfixes/*"
       - "support/*"
       - "dev"
 
@@ -32,7 +32,7 @@ jobs:
             dest_branch="master"
           elif [[ $source_branch == *"support"* ]]; then
             dest_branch="master"
-          elif [[ $source_branch == *"hotfix"* ]]; then
+          elif [[ $source_branch == *"hotfixes"* ]]; then
             dest_branch="hotfix"
           else
             dest_branch="dev"

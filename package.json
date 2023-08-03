@@ -43,7 +43,7 @@
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.3",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.1",
     "shx": "^0.3.4",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.0",

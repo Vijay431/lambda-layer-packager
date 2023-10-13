@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "archiver": "^5.3.1",
-    "commander": "^10.0.1",
+    "commander": "^11.1.0",
     "figlet": "^1.6.0"
   },
   "devDependencies": {

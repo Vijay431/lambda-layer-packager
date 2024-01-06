@@ -22,3 +22,5 @@ jobs:
           generate_release_notes: true
           files: |
             LICENSE
+            README.md
+            CHANGELOG.md

@@ -1,0 +1,27 @@
+enhancement: "*"
+
+documentation:
+  - .env*
+  - "*.md"
+
+tests:
+  - tests/*
+  - jest.*.ts
+
+lint:
+  - .eslint*
+  - .prettier*
+  - .lintstagedrc
+
+scripts:
+  - .github/*
+  - .circleci/*
+  - .husky/*
+
+build:
+  - scripts/*
+  - serverless/*
+
+dependencies:
+  - package.json
+  - yarn.lock

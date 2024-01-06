@@ -1,26 +1,29 @@
-A command-line interface (CLI) application designed to compress required libs in the **node_modules** directory into a **.zip** file that can be effortlessly deployed on AWS Serverless Lambda functions. This **.zip** file is compatible with both Terraform and Serverless frameworks, making it simple to deploy
+# Lambda Layer Packager
+
+Lambda Layer Packager is a CLI application that compresses libraries in the `node_modules` directory into a `.zip` file for easy deployment on AWS Serverless Lambda functions. The generated `.zip` file is compatible with both Terraform and Serverless frameworks.
 
 [![Version](https://img.shields.io/npm/v/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 [![License](https://img.shields.io/npm/l/lambda-layer-packager.svg)](https://github.com/Vijay431/lambda-layer-packager/blob/master/package.json)
 [![Downloads/week](https://img.shields.io/npm/dw/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 
-# Available for
+## Available for
 
 - npm
+- yarn
+- pnpm (upcoming)
 
-# Topics
+## Table of Contents
 
-- [Topics](#topics)
 - [Usage](#usage)
 - [Commands](#commands)
 
-# Usage
+## Usage
 
 ```sh-session
 npm install -g lambda-layer-packager
 ```
 
-# Commands
+## Commands
 
 - [`packager commands`](#packager-commands)
 - [`packager package`](#packager-package)

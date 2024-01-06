@@ -3,23 +3,22 @@ import { Command, Option } from 'commander';
 import childProcess from 'node:child_process';
 import fs from 'node:fs';
 
-import cli from '../../assets/json/cli.json';
+import { cli } from '../assets/json';
 import { PackageManager } from '../types/common';
 import { getCommandByPackageManager, getOnlyProdCommand } from '../utils';
 
 interface PackageCommand {
+  /** @description directory where libs be stored in the archive file */
   dir: string;
+  /** @description list libs which are going to be archived */
   list: boolean;
+  /** @description name of the archive file */
   name: string;
+  /** @description should only production dependencies be packed */
   onlyProd: boolean;
+  /** @description package manager which is being utilized in this project */
   packageManager: PackageManager;
 }
-
-/**
- * @description To pack the node_modules
- *
- * @returns {Command}
- */
 export default function package_command(): Command {
   const command = new Command(),
     compressionLevel = 9,
@@ -30,31 +29,47 @@ export default function package_command(): Command {
     .command('package')
     .description(cli.package.description)
     .summary(cli.package.summary)
-    .addOption(new Option('--name [name]', 'Output archive file name').default('layer').makeOptionMandatory())
     .addOption(
-      new Option('--package-manager [package-manager]', 'What package manager is being utilized in this project?')
-        .choices([PackageManager.npm, PackageManager.yarn])
+      new Option('--name [name]', 'Output file name').default('layer').makeOptionMandatory()
+    )
+    .addOption(
+      new Option(
+        '--package-manager [package-manager]',
+        'What package manager is being utilized in this project?'
+      )
+        .choices(Object.values(PackageManager))
         .default(PackageManager.npm, 'default package manager')
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-d, --dir [directory]', 'Location of the compressed node_modules within the zipped folder')
+      new Option(
+        '-d, --dir [directory]',
+        'Location of the compressed node_modules within the zipped folder'
+      )
         .default('nodejs/node_modules', 'default node_modules directory')
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('--only-prod [prod-dependencies]', 'Should only production dependencies be packed?')
+      new Option(
+        '--only-prod [prod-dependencies]',
+        'Should only production dependencies be packed?'
+      )
         .default(true)
         .makeOptionMandatory()
     )
     .addOption(
-      new Option('-l, --list', 'list all dependencies which will be packed').default(false).makeOptionMandatory()
+      new Option('-l, --list', 'list all dependencies which will be packed')
+        .default(false)
+        .makeOptionMandatory()
     )
     .allowUnknownOption(false)
     .action((args: PackageCommand) => {
       const { dir, list, name, onlyProd, packageManager } = args,
         /** Generating command */
-        command = [getCommandByPackageManager(packageManager), onlyProd ? getOnlyProdCommand(packageManager) : '']
+        command = [
+          getCommandByPackageManager(packageManager),
+          onlyProd ? getOnlyProdCommand(packageManager) : '',
+        ]
           .join(' ')
           .trim();
 

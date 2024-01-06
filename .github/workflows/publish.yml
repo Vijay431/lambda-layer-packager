@@ -32,5 +32,10 @@ jobs:
         with:
           fail_on_unmatched_files: false
           generate_release_notes: true
+          tag_name: echo "$(jq -r .version package.json)"
           files: |
             dist/*
+            src/*
+            LICENSE
+            README.md
+            CHANGELOG.md

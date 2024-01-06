@@ -23,6 +23,10 @@ jobs:
           source_branch=${{ steps.get_source_branch.outputs.branch_name }}
           destination_branch="dev"
 
+          if [[ $source_branch == "dev" ]]; then
+            destination_branch="master"
+          fi
+
           echo "Source Branch: $source_branch"
           echo "Destination Branch: $destination_branch"
 

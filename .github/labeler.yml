@@ -1,8 +1,8 @@
-enhancement: "*"
+enhancement: '*'
 
 documentation:
   - .env*
-  - "*.md"
+  - '*.md'
 
 tests:
   - tests/*

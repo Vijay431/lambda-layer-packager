@@ -1,14 +1,14 @@
 {
-    "default": {
-        "summary": "A command-line interface (CLI) application designed to compress required libs in the node_modules directory into a .zip file that can be effortlessly deployed on AWS Serverless Lambda functions. This .zip file is compatible with both Terraform and Serverless frameworks, making it simple to deploy",
-        "description": "Greetings from the Lambda Layer Packager!"
-    },
-    "commands": {
-        "summary": "Commands to interact with the application",
-        "description": "Use these commands to compress libraries, create .zip files, and deploy to AWS Serverless Lambda."
-    },
-    "package": {
-        "summary": "Package required libs into a .zip file",
-        "description": "Zips all the required libs in the node_modules directory into a .zip file for easy deployment with AWS Serverless Lambdas."
-    }
+  "default": {
+    "summary": "A command-line interface (CLI) application designed to compress required libs in the node_modules directory into a .zip file that can be effortlessly deployed on AWS Serverless Lambda functions. This .zip file is compatible with both Terraform and Serverless frameworks, making it simple to deploy",
+    "description": "Greetings from the Lambda Layer Packager!"
+  },
+  "commands": {
+    "summary": "Commands to interact with the application",
+    "description": "Use these commands to compress libraries, create .zip files, and deploy to AWS Serverless Lambda."
+  },
+  "package": {
+    "summary": "Package required libs into a .zip file",
+    "description": "Zips all the required libs in the node_modules directory into a .zip file for easy deployment with AWS Serverless Lambdas."
+  }
 }

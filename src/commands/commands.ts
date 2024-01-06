@@ -12,7 +12,7 @@ export default function hello_command(): Command {
     .command('commands')
     .description('Show available commands')
     .action(() => {
-        console.log(`
+      console.log(`
         Available commands:
           $ packager package - To pack node_modules 
         `);

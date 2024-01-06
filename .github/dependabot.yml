@@ -1,20 +1,20 @@
 version: 2
 
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "monthly"
-      timezone: "Asia/Kolkata"
+      interval: 'monthly'
+      timezone: 'Asia/Kolkata'
     open-pull-requests-limit: 50
-    rebase-strategy: "auto"
+    rebase-strategy: 'auto'
     pull-request-branch-name:
-      separator: "-"
+      separator: '-'
     assignees:
-      - "Vijay431"
+      - 'Vijay431'
     commit-message:
-      prefix: "Dependency Update:"
-    target-branch: "dependency-updates"
+      prefix: 'Dependency Update:'
+    target-branch: 'dependency-updates'
     labels:
-      - "dependencies"
-      - "automated"
+      - 'dependencies'
+      - 'automated'

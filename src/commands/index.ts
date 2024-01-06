@@ -1,4 +1,4 @@
-#!/usr/bin/env node -r esm -r ts-node/register
+#!/usr/bin/env node
 import { Command } from 'commander';
 import figlet from 'figlet';
 

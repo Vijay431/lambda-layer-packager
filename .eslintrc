@@ -22,7 +22,6 @@
     "complexity": ["error", 10],
     "consistent-return": "error",
     "eqeqeq": "error",
-    "no-console": "error",
     "no-debugger": "error",
     "no-else-return": "error",
     "no-undef": "error",

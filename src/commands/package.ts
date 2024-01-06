@@ -38,15 +38,15 @@ export default function package_command(): Command {
         'What package manager is being utilized in this project?'
       )
         .choices(Object.values(PackageManager))
-        .default(PackageManager.npm, 'default package manager')
+        .default(PackageManager.npm)
         .makeOptionMandatory()
     )
     .addOption(
       new Option(
         '-d, --dir [directory]',
-        'Location of the compressed node_modules within the zipped folder'
+        'archived file directory where libs be stored in the archive file'
       )
-        .default('nodejs/node_modules', 'default node_modules directory')
+        .default('nodejs/node_modules')
         .makeOptionMandatory()
     )
     .addOption(

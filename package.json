@@ -27,14 +27,10 @@
   "engines": {
     "node": "16.20.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint . --ext .ts",
+    "format": "lint-staged",
     "prebuild": "shx rm -rf dist layer.zip",
     "prepublish": "npm run build",
     "pretty": "prettier --write ."

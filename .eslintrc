@@ -2,19 +2,33 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 13,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "tsconfig.eslint.json"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "plugins": ["@typescript-eslint", "security", "prettier"],
   "root": true,
   "env": {
-    "es6": true,
     "mocha": true,
     "node": true,
-    "commonjs": true
+    "browser": true
   },
   "rules": {
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/consistent-type-definitions": "warn"
+    "@typescript-eslint/no-duplicate-enum-values": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
+
+    "complexity": ["error", 10],
+    "consistent-return": "error",
+    "eqeqeq": "error",
+    "no-debugger": "error",
+    "no-else-return": "error",
+    "no-undef": "error",
+    "no-use-before-define": "error",
+    "prefer-const": "error",
+
+    "@typescript-eslint/consistent-type-definitions": "warn",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }

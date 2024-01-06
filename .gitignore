@@ -1,13 +1,8 @@
 ## Files
-package-lock.json
 
 ## Directories
-.vscode
-dist
-lib
 node_modules
-tmp
+dist
 
 ## Extensions
-*.tgz
-*.zip
+*.{tgz,zip}

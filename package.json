@@ -1,21 +1,21 @@
 {
-  "author": "Vijay Gangatharan",
   "name": "lambda-layer-packager",
-  "version": "2.3.0",
+  "description": "A CLI tool to package node_modules into a zip file for AWS Lambda Layers",
+  "version": "2.3.1",
+  "author": {
+    "email": "vijayanand431@gmail.com",
+    "name": "Vijay Gangatharan"
+  },
   "license": "MIT",
   "bin": {
     "packager": "dist/src/commands/index.js"
   },
   "keywords": [
+    "aws",
     "lambda",
-    "lambda-packager",
     "layer",
-    "package",
     "packager",
-    "serverless",
-    "serverless-layer-packager",
-    "serverless-packager",
-    "terraform"
+    "serverless"
   ],
   "repository": "Vijay431/lambda-layer-packager",
   "homepage": "https://github.com/Vijay431/lambda-layer-packager",
@@ -24,14 +24,26 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "engineStrict": true,
   "engines": {
-    "node": ">=16"
+    "node": "16.20.2"
+  },
+  "scripts": {
+    "postinstall": "npm i -g cpy-cli",
+    "clean": "shx rm -rf dist layer.zip",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "postbuild": "npm run copy",
+    "copy": "cpy \"src/assets/icons/*\" \"dist/src/assets/icons\"",
+    "format": "lint-staged",
+    "format:lint": "eslint . --ext .ts",
+    "format:pretty": "prettier --write .",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "archiver": "^5.3.1",
     "commander": "^10.0.1",
-    "figlet": "^1.6.0"
+    "figlet": "^1.6.0",
+    "tslib": "^2.6.0"
   },
   "devDependencies": {
     "@types/archiver": "^5.3.2",
@@ -41,19 +53,14 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.45.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-plugin-security": "^2.1.0",
     "husky": "^8.0.3",
-    "prettier": "^2.8.8",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
     "shx": "^0.3.4",
     "ts-node": "^10.9.1",
-    "tslib": "^2.6.0",
     "typescript": "^5.1.6"
-  },
-  "scripts": {
-    "lint": "eslint --fix .",
-    "format": "prettier --write .",
-    "stage": "npx lint-staged",
-    "prebuild": "shx rm -rf dist && shx rm -rf layer.zip",
-    "build": "tsc -b"
   }
 }

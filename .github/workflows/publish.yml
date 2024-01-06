@@ -1,5 +1,8 @@
+name: Publish
+
 env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN_PACKAGES }}
+  NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
 permissions:
   contents: read
@@ -16,11 +19,19 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 16.20.2
           registry-url: https://registry.npmjs.org/
-      - run: npm install
-      - name: Publishing package
-        run: npm publish --access=public
+      - name: Installing dependencies
+        run: npm ci
+      - name: Publish
+        run: npm publish
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          fail_on_unmatched_files: false
+          generate_release_notes: true
+          files: |
+            dist/*

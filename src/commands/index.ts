@@ -2,21 +2,19 @@
 import { Command } from 'commander';
 import figlet from 'figlet';
 
-import cli from '../../assets/json/cli.json';
-import app from '../../package.json';
-import hello_command from './commands';
-import package_command from './package';
-
-const command = new Command();
+import { version as appVersion } from '../../package.json';
+import { cli } from '../assets/json';
+import helloCommand from './commands';
+import packageCommand from './package';
 
 console.log(figlet.textSync('Lambda Layer Packager'));
 
-command
+new Command()
   .name('packager')
-  .version(app.version, '-v, --version', 'output the current version')
+  .version(appVersion, '-v, --version', 'output the current version')
   .description(cli.default.description)
   .summary(cli.default.summary)
   .addHelpCommand(false)
-  .addCommand(hello_command())
-  .addCommand(package_command())
+  .addCommand(helloCommand())
+  .addCommand(packageCommand())
   .parse();

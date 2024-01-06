@@ -1,54 +1,43 @@
-name: Generate Pull Request
-
-permissions:
-  contents: read
-  pull-requests: write
+name: 'Pull Request'
 
 on:
   push:
-    branches:
-      - "feature/*"
-      - "hotfix/*"
-      - "support/*"
-      - "dev"
+    branches-ignore:
+      - master
 
 jobs:
-  pull_request:
-    name: pull request
+  create_pull_request:
     continue-on-error: true
     runs-on: ubuntu-22.04
-    timeout-minutes: 1
+    timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v3
-      - name: Set short branch name
-        id: vars
-        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
-      - name: Determine destination branch
-        run: |
-          source_branch=${{ steps.vars.outputs.short_ref }}
-          dest_branch="dev"
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-          if [[ $source_branch == "dev" ]]; then
-            dest_branch="master"
-          elif [[ $source_branch == *"support"* ]]; then
-            dest_branch="master"
-          elif [[ $source_branch == *"hotfix"* ]]; then
-            dest_branch="hotfix"
-          else
-            dest_branch="dev"
-          fi
+      - name: Get source branch name
+        id: get_source_branch
+        run: echo ::set-output name=branch_name::${GITHUB_REF#refs/*/}
+
+      - name: Set destination branch name and update environment variables
+        run: |
+          source_branch=${{ steps.get_source_branch.outputs.branch_name }}
+          destination_branch="dev"
 
           echo "Source Branch: $source_branch"
-          echo "Destination Branch: $dest_branch"
+          echo "Destination Branch: $destination_branch"
 
           echo "Updating environment variables..."
-          echo "DEST_BRANCH=$dest_branch" >> $GITHUB_ENV
-      - name: Create Pull Request
+          echo "SOURCE_BRANCH=$source_branch" >> $GITHUB_ENV
+          echo "DEST_BRANCH=$destination_branch" >> $GITHUB_ENV
+
+      - name: Create pull request
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: ${{ env.DEST_BRANCH }}
-          pr_title: "Pushing changes to ${{ env.DEST_BRANCH }}"
-          pr_template: ".github/templates/PULL_REQUEST_TEMPLATE.md"
-          pr_assignee: "vijay431"
+          pr_title: '${{ env.SOURCE_BRANCH }} → ${{ env.DEST_BRANCH }}'
+          pr_template: '.github/pull_request_template.md'
+          pr_assignee: ${{ github.actor }}
+          pr_label: automation
           pr_draft: false
           pr_allow_empty: false
+          github_token: ${{ secrets.PR_TOKEN }}

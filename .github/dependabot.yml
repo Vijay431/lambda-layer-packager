@@ -1,25 +1,20 @@
 version: 2
 
 updates:
-  - directory: /
-    open-pull-requests-limit: 10
-    package-ecosystem: npm
-    rebase-strategy: auto
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: daily
-      time: "21:00"
-      timezone: "Asia/Kolkata"
+      interval: 'monthly'
+      timezone: 'Asia/Kolkata'
+    open-pull-requests-limit: 50
+    rebase-strategy: 'auto'
     pull-request-branch-name:
-      separator: "_"
+      separator: '-'
     assignees:
-      - "Vijay431"
+      - 'Vijay431'
     commit-message:
-      include: scope
-      prefix: Vulnerability
-    target-branch: master
+      prefix: 'Dependency Update:'
+    target-branch: 'dependency-updates'
     labels:
-      - fix
-      - vulnerability
-    versioning-strategy: increase-if-necessary
-
-enable-beta-ecosystems: true
+      - 'dependencies'
+      - 'automated'

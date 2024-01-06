@@ -1,12 +1,9 @@
 ## Files
-.eslint*
-.lintstagedrc
-.prettier*
-tsconfig.json
+.{eslint,prettier,lintstaged}*
+tsconfig*.json
 
 ## Directories
-.github
-.husky
+.{github,husky}
 node_modules
 
 ## Extensions

@@ -1,4 +1,4 @@
 {
-  "*.ts": ["eslint", "prettier --fix ."],
-  "*.json": ["prettier --fix ."]
+  "*.ts": ["npm run format:lint", "npm run format:pretty"],
+  "*.{json,yaml,yml}": ["npm run format:pretty"]
 }

@@ -28,12 +28,16 @@
     "node": "16.20.2"
   },
   "scripts": {
+    "postinstall": "npm i -g cpy-cli",
+    "clean": "shx rm -rf dist layer.zip",
+    "prebuild": "npm run clean",
     "build": "tsc",
-    "lint": "eslint . --ext .ts",
+    "postbuild": "npm run copy",
+    "copy": "cpy \"src/assets/icons/*\" \"dist/src/assets/icons\"",
     "format": "lint-staged",
-    "prebuild": "shx rm -rf dist layer.zip",
-    "prepublish": "npm run build",
-    "pretty": "prettier --write ."
+    "format:lint": "eslint . --ext .ts",
+    "format:pretty": "prettier --write .",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "archiver": "^5.3.1",

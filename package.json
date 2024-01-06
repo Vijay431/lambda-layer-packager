@@ -22,7 +22,8 @@
   "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org",
+    "tag": "latest"
   },
   "engines": {
     "node": "16.20.2"

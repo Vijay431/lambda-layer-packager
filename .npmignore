@@ -1,5 +1,5 @@
 ## Files
-.{eslint,prettier,lintstaged}*
+.{gitignore,eslint,prettier,lintstaged}*
 tsconfig*.json
 
 ## Directories

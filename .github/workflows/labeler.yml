@@ -1,6 +1,9 @@
-name: 'script: labeler'
+name: Labeler
 
-on: pull_request
+on:
+  push:
+    branches-ignore:
+      - master
 
 jobs:
   label:

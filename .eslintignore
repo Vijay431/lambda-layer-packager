@@ -1,9 +1,12 @@
 ## Files
 
 ## Directories
-.{github,husky}
+.github
+.husky
 dist
 node_modules
 
 ## Extensions
-*.{json,md,yml}
+*.json
+*.md
+*.yml

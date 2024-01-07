@@ -1,7 +1,7 @@
 {
   "name": "lambda-layer-packager",
   "description": "A CLI tool to package node_modules into a zip file for AWS Lambda Layers",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "author": {
     "email": "vijayanand431@gmail.com",
     "name": "Vijay Gangatharan"

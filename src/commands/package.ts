@@ -2,6 +2,7 @@ import archiver from 'archiver';
 import { Command, Option } from 'commander';
 import childProcess from 'node:child_process';
 import fs from 'node:fs';
+import Spinnies from 'spinnies';
 
 import { cli } from '../assets/json';
 import { PackageManager } from '../types/common';
@@ -10,8 +11,6 @@ import { getCommandByPackageManager, getOnlyProdCommand } from '../utils';
 interface PackageCommand {
   /** @description directory where libs be stored in the archive file */
   dir: string;
-  /** @description list libs which are going to be archived */
-  list: boolean;
   /** @description name of the archive file */
   name: string;
   /** @description should only production dependencies be packed */
@@ -23,18 +22,24 @@ export default function package_command(): Command {
   const command = new Command(),
     compressionLevel = 9,
     concurrency = 10;
-  let zipFileName = 'layer.zip';
+
+  const spinner = new Spinnies({
+    color: 'gray',
+    spinner: { frames: ['📦'], interval: 100 },
+  });
 
   return command
     .command('package')
     .description(cli.package.description)
     .summary(cli.package.summary)
     .addOption(
-      new Option('--name [name]', 'Output file name').default('layer').makeOptionMandatory()
+      new Option('-n, --name [name]', 'output file name with default extension .zip')
+        .default('layer')
+        .makeOptionMandatory()
     )
     .addOption(
       new Option(
-        '--package-manager [package-manager]',
+        '-m, --package-manager [package-manager]',
         'What package manager is being utilized in this project?'
       )
         .choices(Object.values(PackageManager))
@@ -44,7 +49,7 @@ export default function package_command(): Command {
     .addOption(
       new Option(
         '-d, --dir [directory]',
-        'archived file directory where libs be stored in the archive file'
+        'archived file directory where libs will be stored in the archive file'
       )
         .default('nodejs/node_modules')
         .makeOptionMandatory()
@@ -57,14 +62,9 @@ export default function package_command(): Command {
         .default(true)
         .makeOptionMandatory()
     )
-    .addOption(
-      new Option('-l, --list', 'list all dependencies which will be packed')
-        .default(false)
-        .makeOptionMandatory()
-    )
     .allowUnknownOption(false)
     .action((args: PackageCommand) => {
-      const { dir, list, name, onlyProd, packageManager } = args,
+      const { dir, name, onlyProd, packageManager } = args,
         /** Generating command */
         command = [
           getCommandByPackageManager(packageManager),
@@ -84,16 +84,8 @@ export default function package_command(): Command {
             /** push `@types` always */
             formattedDeps = [...Object.keys(deps), '@types'];
 
-          if (list) {
-            console.log('Dependencies which will be packed:');
-            formattedDeps.forEach((d) => {
-              console.log(d);
-            });
-            return;
-          }
-
           /** Opening zip module */
-          zipFileName = (name ?? 'layer') + '.zip';
+          const zipFileName = (name ?? 'layer') + '.zip';
           const output = fs.createWriteStream(zipFileName),
             archive = archiver('zip', {
               statConcurrency: concurrency,
@@ -122,7 +114,9 @@ export default function package_command(): Command {
 
           /** Generate table view of packing modules */
           formattedDeps.forEach((d) => {
+            spinner.add(d, { text: `Packing ${d}...` });
             archive.directory(`node_modules/${d}`, `${dir}/${d}`);
+            spinner.succeed(d, { text: `Packing ${d} succeeded!` });
           });
 
           await archive.finalize();
@@ -131,5 +125,7 @@ export default function package_command(): Command {
           console.error(err.message);
           throw err;
         });
+
+      spinner.stopAll();
     });
 }

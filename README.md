@@ -10,7 +10,7 @@ Lambda Layer Packager is a CLI application that compresses libraries in the `nod
 
 - npm
 - yarn
-- pnpm (upcoming)
+- pnpm
 
 ## Table of Contents
 
@@ -21,6 +21,7 @@ Lambda Layer Packager is a CLI application that compresses libraries in the `nod
 
 ```sh-session
 npm install -g lambda-layer-packager
+packager --version
 ```
 
 ## Commands
@@ -32,38 +33,51 @@ npm install -g lambda-layer-packager
 
 Display help for **commands** command.
 
-```
+```text
 USAGE
   $ packager commands
 
 ARGUMENTS
-  commands  Command to show help for.
-
-FLAGS
-  -s, --show  [default: true] shows all available commands
-  -h, --help  output commands available
+  commands To list the available commands.
 
 DESCRIPTION
-  Display help for commands command.
+  To show the available commands in CLI.
 ```
 
 ## `packager package`
 
 Display help for **package** command.
 
-```
+```text
 USAGE
   $ packager package
 
 ARGUMENTS
-  package  Command to show help for.
+  package  Command to pack the modules.
 
 FLAGS
-  --package-manager  [default: npm] What package manager is being utilized in this project?
-  -d, --dir          [default: nodejs/default] Location of the compressed node_modules within the zipped folder
-  --only-prod        [default: true] Should only production dependencies be packed?
-  -h, --help         output commands available
+  -n, --name [default: "layer"]           output file name with default extension .zip
+  -m, --package-manager [default: "npm"]  What package manager is being utilized in this project?
+  -d, --dir [default: "nodejs/default"]   archived file directory where libs will be stored in the archive file
+  --only-prod [default: true]             Should only production dependencies be packed?
+  -h, --help                              output commands available
 
 DESCRIPTION
-  Display help for commands command.
+  It runs the process to archive the required node_modules based on the requirement
 ```
+
+## Acknowledgements
+
+This project uses the following open-source libraries:
+
+[figlet](https://www.npmjs.com/package/figlet): Used for creating ASCII Art from text. Licensed under the [MIT](https://opensource.org/license/mit/) License.
+
+[commander](https://www.npmjs.com/package/commander): Used for handling command-line interfaces. Licensed under the [MIT](https://opensource.org/license/mit/) License.
+
+[archiver](https://www.npmjs.com/package/archiver): Used for creating archives in Node.js. Licensed under the [MIT](https://opensource.org/license/mit/) License.
+
+[spinnies](https://www.npmjs.com/package/spinnies): Used for creating spinner animations in the terminal. Licensed under the [MIT](https://opensource.org/license/mit/) License.
+
+I thank the authors of these libraries for their work.
+
+Thanks for the community :heart:

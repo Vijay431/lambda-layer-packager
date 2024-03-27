@@ -2,7 +2,8 @@
 
 ## Directories
 node_modules
-dist
+lib
+__repos__
 
 ## Extensions
 *.tgz

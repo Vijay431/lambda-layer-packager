@@ -1,4 +1,4 @@
 {
-  "*.ts": ["npm run format:lint", "npm run format:pretty"],
-  "*.{json,yaml,yml}": ["npm run format:pretty"]
+	"*.ts": ["npm run format:lint", "npm run format:pretty"],
+	"*.{json,yaml,yml}": ["npm run format:pretty"]
 }

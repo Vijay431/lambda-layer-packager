@@ -1,12 +1,19 @@
 # Lambda Layer Packager
 
-Lambda Layer Packager is a CLI application that compresses libraries in the `node_modules` directory into a `.zip` file for easy deployment on AWS Serverless Lambda functions. The generated `.zip` file is compatible with both Terraform and Serverless frameworks.
+![Lambda Layer Package Logo](src/assets/icons/logo.jpg)
+
+Lambda Layer Packager is a CLI application that compresses libraries in the `node_modules` directory into a `.zip` file for easy deployment on AWS Serverless Lambda functions. This `.zip` file can be used for deployment with Serverless and TerraForm (IaaS)
 
 [![Version](https://img.shields.io/npm/v/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 [![License](https://img.shields.io/npm/l/lambda-layer-packager.svg)](https://github.com/Vijay431/lambda-layer-packager/blob/master/package.json)
 [![Downloads/week](https://img.shields.io/npm/dw/lambda-layer-packager.svg)](https://npmjs.org/package/lambda-layer-packager)
 
-## Available for
+## Available in
+
+- esm (ES2022) - compatible with **.js**
+- cjs (CommonJS) - compatible with **.ts**
+
+### Available for
 
 - npm
 - yarn
@@ -19,8 +26,14 @@ Lambda Layer Packager is a CLI application that compresses libraries in the `nod
 
 ## Usage
 
-```sh-session
-npm install -g lambda-layer-packager
+```bash
+# To make the package globally available
+npm install -g lambda-layer-packager@latest
+
+# To make the package available only for specific application
+npm install --save-dev lambda-layer-packager@latest
+
+# To verify the installation
 packager --version
 ```
 
@@ -33,7 +46,7 @@ packager --version
 
 Display help for **commands** command.
 
-```text
+```bash
 USAGE
   $ packager commands
 
@@ -48,7 +61,7 @@ DESCRIPTION
 
 Display help for **package** command.
 
-```text
+```bash
 USAGE
   $ packager package
 
@@ -56,14 +69,19 @@ ARGUMENTS
   package  Command to pack the modules.
 
 FLAGS
-  -n, --name [default: "layer"]           output file name with default extension .zip
-  -m, --package-manager [default: "npm"]  What package manager is being utilized in this project?
-  -d, --dir [default: "nodejs/default"]   archived file directory where libs will be stored in the archive file
-  --only-prod [default: true]             Should only production dependencies be packed?
-  -h, --help                              output commands available
+  --name [default: "layer"]
+      output file name with default extension .zip
+  --package-manager [default: "npm"]  
+      What package manager is being utilized in this project?
+  --dir [default: "nodejs/default"]   
+      archived file directory where libs will be stored in the archive file
+  --only-prod [default: true]             
+      Should only production dependencies be packed?
+  --help                              
+      output commands available
 
 DESCRIPTION
-  It runs the process to archive the required node_modules based on the requirement
+  It runs the process to archive the required node_modules into a zip file.
 ```
 
 ## Acknowledgements

@@ -1,12 +1,14 @@
 ## Files
+.*ignore
+.npmrc
+LICENSE
+README.md
 
 ## Directories
 .github
 .husky
-dist
+__repos__
+lib
 node_modules
 
 ## Extensions
-*.json
-*.md
-*.yml

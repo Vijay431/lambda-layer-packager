@@ -1,9 +1,14 @@
-name: 'Pull Request'
+name: Pull Request
+run-name: pull-request
 
 on:
   push:
     branches-ignore:
       - master
+
+permissions: 
+  contents: read
+  pull-requests: write
 
 jobs:
   create_pull_request:
@@ -11,13 +16,10 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 2
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - name: Get source branch name
         id: get_source_branch
         run: echo ::set-output name=branch_name::${GITHUB_REF#refs/*/}
-
       - name: Set destination branch name and update environment variables
         run: |
           source_branch=${{ steps.get_source_branch.outputs.branch_name }}
@@ -44,4 +46,3 @@ jobs:
           pr_label: automation
           pr_draft: false
           pr_allow_empty: false
-          github_token: ${{ secrets.PR_TOKEN }}

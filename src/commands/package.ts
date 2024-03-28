@@ -126,6 +126,10 @@ export default function package_command(): Command {
 						spinner.succeed(d, { text: `Packing ${d} succeeded!` });
 					});
 
+					/** Push @types by default */
+					archive.directory('node_modules/@types', `${dir}/@types`);
+
+					/** Finalize the archive */
 					await archive.finalize();
 				})
 				.on('error', (err: Error) => {

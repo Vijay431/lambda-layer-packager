@@ -1,66 +1,72 @@
 {
-  "name": "lambda-layer-packager",
-  "description": "A CLI tool to package node_modules into a zip file for AWS Lambda Layers",
-  "version": "2.3.3",
-  "author": {
-    "email": "vijayanand431@gmail.com",
-    "name": "Vijay Gangatharan"
-  },
-  "license": "MIT",
-  "bin": {
-    "packager": "dist/src/commands/index.js"
-  },
-  "keywords": [
-    "aws",
-    "lambda",
-    "layer",
-    "packager",
-    "serverless"
-  ],
-  "repository": "Vijay431/lambda-layer-packager",
-  "homepage": "https://github.com/Vijay431/lambda-layer-packager",
-  "bugs": "https://github.com/Vijay431/lambda-layer-packager/issues",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org"
-  },
-  "engines": {
-    "node": "16.20.2"
-  },
-  "scripts": {
-    "postinstall": "npm i -g cpy-cli",
-    "clean": "shx rm -rf dist layer.zip",
-    "prebuild": "npm run clean",
-    "build": "tsc",
-    "postbuild": "npm run copy",
-    "copy": "cpy \"src/assets/icons/*\" \"dist/src/assets/icons\"",
-    "format": "lint-staged",
-    "format:lint": "eslint . --ext .ts",
-    "format:pretty": "prettier --write .",
-    "prepublish": "npm run build"
-  },
-  "dependencies": {
-    "archiver": "^5.3.1",
-    "commander": "^10.0.1",
-    "figlet": "^1.6.0",
-    "tslib": "^2.6.0"
-  },
-  "devDependencies": {
-    "@types/archiver": "^5.3.2",
-    "@types/figlet": "^1.5.6",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^18.16.19",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^8.45.0",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-prettier": "^5.1.2",
-    "eslint-plugin-security": "^2.1.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1",
-    "shx": "^0.3.4",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
-  }
+	"name": "lambda-layer-packager",
+	"description": "A CLI tool to package node_modules into a zip file for AWS Lambda Layers",
+	"version": "2.3.4",
+	"license": "MIT",
+	"author": {
+		"email": "vijayanand431@gmail.com",
+		"name": "Vijay Gangatharan"
+	},
+	"keywords": [
+		"aws",
+		"lambda",
+		"layer",
+		"packager",
+		"serverless"
+	],
+	"repository": {
+		"url": "https://github.com/Vijay431/lambda-layer-packager"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	},
+	"engineStrict": true,
+	"engines": {
+		"node": ">=18"
+	},
+	"main": "./lib/src/commands/index.js",
+	"bin": {
+		"packager": "./bin/packager"
+	},
+	"scripts": {
+		"postinstall": "npm run build",
+		"preinstall": "npm i -g cpy-cli npm-run-all",
+		"clean": "shx rm -rf dist lib layer.zip",
+		"prebuild": "npm run clean",
+		"build": "tsc -b tsconfig.cjs.json",
+		"postbuild": "npm-run-all copy copy:cjs",
+		"copy": "cpy bin package.json README.md LICENSE lib",
+		"copy:cjs": "cpy src/assets/icons/* lib/src/assets/icons",
+		"format": "lint-staged",
+		"format:lint": "eslint --fix",
+		"format:pretty": "prettier --write .",
+		"prepublish": "npm run build"
+	},
+	"dependencies": {
+		"archiver": "^5.3.1",
+		"commander": "^10.0.1",
+		"figlet": "^1.6.0",
+		"tslib": "^2.6.2"
+	},
+	"devDependencies": {
+		"@types/archiver": "^5.3.2",
+		"@types/chai": "^4.3.11",
+		"@types/figlet": "^1.5.6",
+		"@types/node": "^18.16.19",
+		"@types/spinnies": "^0.5.3",
+		"@typescript-eslint/eslint-plugin": "^5.62.0",
+		"@typescript-eslint/parser": "^5.62.0",
+		"eslint": "^8.45.0",
+		"eslint-config-prettier": "^8.10.0",
+		"eslint-plugin-prettier": "^5.1.2",
+		"eslint-plugin-security": "^2.1.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^15.2.0",
+		"prettier": "^3.1.1",
+		"shx": "^0.3.4",
+		"spinnies": "^0.5.1",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.1.6"
+	}
 }

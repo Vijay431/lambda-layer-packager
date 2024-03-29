@@ -3,7 +3,6 @@
 .husky
 __repos__
 src/**
-lib/package.json
 test
 
 # Files

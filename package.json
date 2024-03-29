@@ -9,13 +9,25 @@
 	},
 	"keywords": [
 		"aws",
-		"lambda",
+		"aws-lambda",
+		"serverless",
+		"serverless-framework",
+		"serverless-plugin",
+		"nodejs",
+		"node",
+		"npm",
+		"zip",
 		"layer",
+		"lambda",
+		"terraform",
+		"cloudformation",
 		"packager",
-		"serverless"
+		"cli",
+		"command-line",
+		"tool"
 	],
 	"repository": {
-		"url": "https://github.com/Vijay431/lambda-layer-packager"
+		"url": "git+https://github.com/Vijay431/lambda-layer-packager.git"
 	},
 	"publishConfig": {
 		"access": "public",
@@ -27,7 +39,7 @@
 	},
 	"main": "./lib/src/commands/index.js",
 	"bin": {
-		"packager": "./bin/packager"
+		"packager": "bin/packager"
 	},
 	"scripts": {
 		"clean": "shx rm -rf lib layer.zip",

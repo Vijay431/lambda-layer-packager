@@ -1,7 +1,7 @@
 {
 	"name": "lambda-layer-packager",
 	"description": "A CLI tool to package node_modules into a zip file for AWS Lambda Layers",
-	"version": "2.3.4",
+	"version": "2.3.5",
 	"license": "MIT",
 	"author": {
 		"email": "vijayanand431@gmail.com",
@@ -25,13 +25,6 @@
 	"engines": {
 		"node": ">=18"
 	},
-	"files": [
-		"LICENSE",
-		"README.md",
-		"bin",
-		"lib",
-		"package.json"
-	],
 	"main": "./lib/src/commands/index.js",
 	"bin": {
 		"packager": "./bin/packager"
@@ -68,6 +61,7 @@
 		"shx": "^0.3.4",
 		"spinnies": "^0.5.1",
 		"ts-node": "^10.9.2",
+		"typedoc": "^0.25.12",
 		"typescript": "^5.1.6"
 	}
 }

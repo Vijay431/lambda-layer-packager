@@ -1,0 +1,18 @@
+# Directories
+.github
+.husky
+__repos__
+src/**
+lib/package.json
+test
+
+# Files
+.eslint*
+.lintstagedrc
+.mocharc*
+.prettier*
+tsconfig*.json
+
+# Extensions
+*.tgz
+*.log

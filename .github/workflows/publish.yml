@@ -34,6 +34,6 @@ jobs:
           tag_name: echo "$(jq -r .version package.json)"
           files: |
             lib/*
+            package.json
             LICENSE
             README.md
-            CHANGELOG.md

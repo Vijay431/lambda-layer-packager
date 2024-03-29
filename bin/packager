@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../src/commands/index.js');
+require('../lib/src/commands/index.js');

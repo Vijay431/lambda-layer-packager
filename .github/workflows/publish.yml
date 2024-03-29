@@ -24,10 +24,8 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
-      - name: Install deps
-        run: npm ci
-      - name: publish package
-        run: npm publish
+      - run: npm ci
+      - run: npm publish
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
@@ -35,8 +33,7 @@ jobs:
           generate_release_notes: true
           tag_name: echo "$(jq -r .version package.json)"
           files: |
-            dist/*
-            src/*
+            lib/*
+            package.json
             LICENSE
             README.md
-            CHANGELOG.md

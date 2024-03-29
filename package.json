@@ -1,7 +1,7 @@
 {
 	"name": "lambda-layer-packager",
 	"description": "A CLI tool to package node_modules into a zip file for AWS Lambda Layers",
-	"version": "2.3.4",
+	"version": "2.3.5",
 	"license": "MIT",
 	"author": {
 		"email": "vijayanand431@gmail.com",
@@ -30,18 +30,12 @@
 		"packager": "./bin/packager"
 	},
 	"scripts": {
-		"postinstall": "npm run build",
-		"preinstall": "npm i -g cpy-cli npm-run-all",
-		"clean": "shx rm -rf dist lib layer.zip",
-		"prebuild": "npm run clean",
+		"clean": "shx rm -rf lib layer.zip",
 		"build": "tsc -b tsconfig.cjs.json",
-		"postbuild": "npm-run-all copy copy:cjs",
-		"copy": "cpy bin package.json README.md LICENSE lib",
-		"copy:cjs": "cpy src/assets/icons/* lib/src/assets/icons",
 		"format": "lint-staged",
 		"format:lint": "eslint --fix",
 		"format:pretty": "prettier --write .",
-		"prepublish": "npm run build"
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"archiver": "^5.3.1",
@@ -67,6 +61,7 @@
 		"shx": "^0.3.4",
 		"spinnies": "^0.5.1",
 		"ts-node": "^10.9.2",
+		"typedoc": "^0.25.12",
 		"typescript": "^5.1.6"
 	}
 }

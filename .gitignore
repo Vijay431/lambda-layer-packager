@@ -4,6 +4,7 @@
 node_modules
 lib
 __repos__
+.docs
 
 ## Extensions
 *.tgz

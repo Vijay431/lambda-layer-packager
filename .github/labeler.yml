@@ -1,12 +1,8 @@
-enhancement: "*"
+enhancement: src/*
 
 documentation:
-  - .env*
   - "*.md"
-
-tests:
-  - tests/*
-  - jest.*.ts
+  - LICENSE
 
 lint:
   - .eslint*
@@ -14,14 +10,15 @@ lint:
   - .lintstagedrc
 
 scripts:
+  - .husky/*
   - .github/*
   - .circleci/*
   - .husky/*
 
-build:
-  - scripts/*
-  - serverless/*
-
 dependencies:
-  - package.json
-  - yarn.lock
+  - package*.json
+
+configurations:
+  - tsconfig*.json
+  - .npmrc
+  - .npmignore

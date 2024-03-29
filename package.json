@@ -25,23 +25,24 @@
 	"engines": {
 		"node": ">=18"
 	},
+	"files": [
+		"LICENSE",
+		"README.md",
+		"bin",
+		"lib",
+		"package.json"
+	],
 	"main": "./lib/src/commands/index.js",
 	"bin": {
 		"packager": "./bin/packager"
 	},
 	"scripts": {
-		"postinstall": "npm run build",
-		"preinstall": "npm i -g cpy-cli npm-run-all",
-		"clean": "shx rm -rf dist lib layer.zip",
-		"prebuild": "npm run clean",
+		"clean": "shx rm -rf lib layer.zip",
 		"build": "tsc -b tsconfig.cjs.json",
-		"postbuild": "npm-run-all copy copy:cjs",
-		"copy": "cpy bin package.json README.md LICENSE lib",
-		"copy:cjs": "cpy src/assets/icons/* lib/src/assets/icons",
 		"format": "lint-staged",
 		"format:lint": "eslint --fix",
 		"format:pretty": "prettier --write .",
-		"prepublish": "npm run build"
+		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
 		"archiver": "^5.3.1",
